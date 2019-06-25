@@ -1,8 +1,5 @@
 # ignore Mac system files
 .DS_store
 
-# Ignore obconfig
-obconfig.json
-
 # Ignore readables
-readable
+unobf
