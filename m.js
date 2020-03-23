@@ -25,14 +25,13 @@ function setup() {
   imageMode(CENTER);
   frameRate(60);
   noSmooth();
-  noStroke();
 
   state.inventory = new Inventory(10, 5);
   state.inventory.add(new Item({
-    name: 'Ur mum',
-    desc: 'It does absolutely nothing lmao',
-    ench: 'no enchants loollll',
-    type: 'axe',
+    name: 'Ching and Swing',
+    desc: 'As one of the most overpowered weapons in the entire game, this sword can absolutely annihilate any enemy that dares cross paths with it.',
+    ench: 'Sharpness~XI, Critical~IV, Strike~VII, Headshot~III, Impaling~V, Looting~VI, Telekinesis~I, Luck~LXIV, Growth~XXVI, Protection~XLII, Ball~Sniper~V, Experience~II, Blong~Glong~I',
+    type: 'sword',
     rare: 'legendary',
     imag: state.images['sword_vibranium']
   }));
@@ -45,7 +44,7 @@ function setup() {
     imag: state.images['armor_iron']
   }));
   state.inventory.add(new Item({
-    name: 'Ur mum',
+    name: 'CHING CHoNG GLING GLONG',
     desc: 'It does absolutely nothing lmao',
     ench: 'no enchants loollll',
     type: 'axe',
@@ -53,7 +52,7 @@ function setup() {
     imag: state.images['axe_uranium']
   }));
   state.inventory.add(new Item({
-    name: 'Ur mum',
+    name: 'pssss',
     desc: 'It does absolutely nothing lmao',
     ench: 'no enchants loollll',
     type: 'axe',
@@ -65,7 +64,7 @@ function setup() {
 function draw() {
   //Called every frame to draw everything
   push();
-  background(26);
+  background(colors.black);
 
   state.inventory.draw(40, 40, 40, 60, 60);
 

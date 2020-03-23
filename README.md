@@ -11,6 +11,9 @@ The objective is to become the most powerful player (indicated by your stats) be
 
 # Changelog
 
+v0.2 23 March 2020
+* Added Tooltips
+
 v0.1 22 March 2020
 * Scrapped old code
 * Basic Inventory
