@@ -8,3 +8,10 @@ In addition, you can buy and sell items between players in an online auction, wh
 Ranks give you an advantage over other players and allow you to sell multiple things at once, or increase inventory space.
 Finally, there is a gambling section that sells tickets, and then draws winners of potentially multimillion dollar winnings.
 The objective is to become the most powerful player (indicated by your stats) because it gives you pretty awesome secret powers :)
+
+# Changelog
+
+v0.1 22 March 2020
+* Scrapped old code
+* Basic Inventory
+* Basic Items
