@@ -21,6 +21,7 @@ function preload() {
 function setup() {
   //Set up the client
   createCanvas(windowWidth, windowHeight);
+  cursor('assets/cursor.png');
   textFont(state.font);
   imageMode(CENTER);
   frameRate(60);
@@ -34,30 +35,6 @@ function setup() {
     type: 'sword',
     rare: 'legendary',
     imag: state.images['sword_vibranium']
-  }));
-  state.inventory.add(new Item({
-    name: 'Mcyeetus',
-    desc: 'It does absolutely nothing lmao',
-    ench: 'no enchants loollll',
-    type: 'axe',
-    rare: 'legendary',
-    imag: state.images['armor_iron']
-  }));
-  state.inventory.add(new Item({
-    name: 'CHING CHoNG GLING GLONG',
-    desc: 'It does absolutely nothing lmao',
-    ench: 'no enchants loollll',
-    type: 'axe',
-    rare: 'legendary',
-    imag: state.images['axe_uranium']
-  }));
-  state.inventory.add(new Item({
-    name: 'pssss',
-    desc: 'It does absolutely nothing lmao',
-    ench: 'no enchants loollll',
-    type: 'axe',
-    rare: 'legendary',
-    imag: state.images['helmet_diamond']
   }));
 }
 

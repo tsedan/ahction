@@ -11,7 +11,6 @@ class Inventory {
 
   draw(x, y, d, sx, sy) { //x, y, radius, spacing
     push();
-    cursor();
 
     noStroke();
     for (let i = 0; i < this.wid; i++)
