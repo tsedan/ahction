@@ -17,12 +17,16 @@ function setup() {
 
     state.inventory = new Inventory(10, 5);
     state.inventory.add(new Item({
-        name: 'Ching and Swing',
-        desc: 'As one of the most overpowered weapons in the entire game, this sword can absolutely annihilate any enemy that dares cross paths with it.',
-        ench: 'Sharpness~XI, Critical~IV, Strike~VII, Headshot~III, Impaling~V, Looting~VI, Telekinesis~I, Luck~LXIV, Growth~XXVI, Protection~XLII, Ball~Sniper~V, Experience~II, Blong~Glong~I',
+        name: 'Sharpened Kitchen Knife',
+        desc: "you don't really expect much of the knife, but it's durable nonetheless",
+        ench: [
+            new Enchant("sharpness", "II"),
+            new Enchant("durability", "VI"),
+            new Enchant("serrated edge", "IV")
+        ],
         type: 'sword',
         rare: 'legendary',
-        imag: state.images['sword_vibranium']
+        imag: state.images['sword_iron']
     }));
 }
 
