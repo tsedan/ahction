@@ -38,9 +38,7 @@ class Item {
             ]);
         }
 
-        tipText = tipText.concat([
-            new TooltipText(this.rare + ' ' + this.type, rareToColor[this.rare], textSizes.default, false)
-        ]);
+        tipText.push(new TooltipText(this.rare + ' ' + this.type, rareToColor[this.rare], textSizes.default, false));
 
         this.ttip = [];
         for (let i of tipText)

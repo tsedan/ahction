@@ -20,15 +20,16 @@ class Inventory {
             }
 
         for (let i = 0; i < this.wid; i++)
-            for (let j = 0; j < this.hei; j++) {
-                if (this.held != null && (this.held[0] == j && this.held[1] == i)) { this.items[j][i].draw(mouseX, mouseY, d); }
-                else { this.items[j][i].draw(x + i*sx, y + j*sy, d); }
-            }
+            for (let j = 0; j < this.hei; j++)
+                if (this.held == null || (this.held[0] != j || this.held[1] != i)) this.items[j][i].draw(x + i*sx, y + j*sy, d);
+
+        if (this.held != null) this.items[this.held[0]][this.held[1]].draw(mouseX,mouseY,d);
 
         for (let i = 0; i < this.wid; i++)
             for (let j = 0; j < this.hei; j++)
                 if (mouseHovering(x + i*sx, y + j*sy, d/2) && (this.held == null || (this.held[0] != j || this.held[1] != i)))
                     this.items[j][i].tooltip();
+
         pop();
     }
 
@@ -37,7 +38,7 @@ class Inventory {
             for (let j = 0; j < this.hei; j++)
                 if (mouseHovering(x + i*sx, y + j*sy, d/2)) {
                     if (this.held == null) {
-                        this.held = [j,i];
+                        if (!this.items[j][i].isNull) this.held = [j,i];
                     } else {
                         this.swap(this.held[1], this.held[0], i, j);
                         this.held = null;
