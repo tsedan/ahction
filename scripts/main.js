@@ -26,7 +26,19 @@ function setup() {
         ],
         type: 'sword',
         rare: 'uncommon',
-        imag: state.images['sword_iron']
+        imag: state.images['sword_iron'],
+        stac: false
+    }));
+
+    state.inventory.add(new Item({
+        name: 'Vibranium Ore',
+        desc: "",
+        ench: [],
+        type: 'ore',
+        rare: 'legendary',
+        imag: state.images['ore_vibranium'],
+        stac: true,
+        quan: 5
     }));
 }
 
@@ -37,4 +49,8 @@ function draw() {
     state.inventory.draw(40, 40, 40, 60, 60);
 
     pop();
+}
+
+function mousePressed() {
+    state.inventory.testHold(40, 40, 40, 60, 60);
 }

@@ -23,8 +23,8 @@ class TooltipText {
         }
 
         return [
-            new TooltipText(subHalfOne.join(' '), this.color, this.size, this.breakable).separate(charLimit),
-            new TooltipText(subHalfTwo.join(' '), this.color, this.size, this.breakable).separate(charLimit)
+            new TooltipText(subHalfOne.join(' '), this.color, this.size, true).separate(charLimit),
+            new TooltipText(subHalfTwo.join(' '), this.color, this.size, true).separate(charLimit)
         ];
     }
 

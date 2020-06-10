@@ -1,11 +1,12 @@
 class Inventory {
-    constructor(wid, hei) {
+    constructor(cols, rows) {
         this.items = [];
-            for (let i = 0; i < hei; i++) {
-                this.items[i] = [];
-                for (let j = 0; j < wid; j++) this.items[i][j] = new Item({}, true);
-            }
-        this.wid = wid, this.hei = hei;
+        for (let i = 0; i < rows; i++) {
+            this.items[i] = [];
+            for (let j = 0; j < cols; j++) this.items[i][j] = new Item(false);
+        }
+        this.wid = cols, this.hei = rows;
+        this.held = null;
     }
 
     draw(x, y, d, sx, sy) {
@@ -13,13 +14,35 @@ class Inventory {
 
         noStroke();
         for (let i = 0; i < this.wid; i++)
-            for (let j = 0; j < this.hei; j++)
-                this.items[j][i].draw(x + i*sx, y + j*sy, d);
+            for (let j = 0; j < this.hei; j++) {
+                fill(mouseHovering(x + i*sx, y + j*sy, d/2) ? 158 : 102);
+                circle(x + i*sx, y + j*sy, d);
+            }
+
+        for (let i = 0; i < this.wid; i++)
+            for (let j = 0; j < this.hei; j++) {
+                if (this.held != null && (this.held[0] == j && this.held[1] == i)) { this.items[j][i].draw(mouseX, mouseY, d); }
+                else { this.items[j][i].draw(x + i*sx, y + j*sy, d); }
+            }
 
         for (let i = 0; i < this.wid; i++)
             for (let j = 0; j < this.hei; j++)
-                if (mouseHovering(x + i*sx, y + j*sy, d/2)) this.items[j][i].tooltip();
+                if (mouseHovering(x + i*sx, y + j*sy, d/2) && (this.held == null || (this.held[0] != j || this.held[1] != i)))
+                    this.items[j][i].tooltip();
         pop();
+    }
+
+    testHold(x, y, d, sx, sy) {
+        for (let i = 0; i < this.wid; i++)
+            for (let j = 0; j < this.hei; j++)
+                if (mouseHovering(x + i*sx, y + j*sy, d/2)) {
+                    if (this.held == null) {
+                        this.held = [j,i];
+                    } else {
+                        this.swap(this.held[1], this.held[0], i, j);
+                        this.held = null;
+                    }
+                }
     }
 
     add(item) {
@@ -27,5 +50,11 @@ class Inventory {
             for (let j = 0; j < this.wid; j++)
                 if (this.items[i][j].isNull) { this.items[i][j] = item; return true; }
         return false;
+    }
+
+    swap(col1, row1, col2, row2) {
+        const tempItem = this.items[row1][col1];
+        this.items[row1][col1] = this.items[row2][col2];
+        this.items[row2][col2] = tempItem;
     }
 }

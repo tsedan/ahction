@@ -1,12 +1,14 @@
 class Item {
-    constructor(props, nothing=false) {
-        if (nothing) { this.isNull = true; return; }
+    constructor(props) {
+        if (!props) { this.isNull = true; return; }
         this.name = props.name;
         this.desc = props.desc;
         this.ench = props.ench;
         this.type = props.type;
         this.rare = props.rare;
         this.imag = props.imag;
+        this.stac = props.stac;
+        if (this.stac) this.quan = props.quan;
         this.isNull = false;
         this.updateTip();
     }
@@ -17,15 +19,28 @@ class Item {
             enchStr += ench.type.split(" ").join("~") + "~" + ench.level + ", ";
         enchStr = enchStr.slice(0, -2);
 
-        const tipText = [
+        let tipText = [
             new TooltipText(this.name, rareToColor[this.rare], textSizes.name, false),
             new TooltipText('', colors.yellow, textSizes.space, false),
-            new TooltipText(enchStr, colors.lightblue, textSizes.default, true),
-            new TooltipText('', colors.yellow, textSizes.space, false),
-            new TooltipText(this.desc, colors.white, textSizes.default, true),
-            new TooltipText('', colors.yellow, textSizes.space, false),
-            new TooltipText(this.rare + ' ' + this.type, rareToColor[this.rare], textSizes.default, false)
         ];
+
+        if (enchStr != "") {
+            tipText = tipText.concat([
+                new TooltipText(enchStr, colors.lightblue, textSizes.default, true),
+                new TooltipText('', colors.yellow, textSizes.space, false)
+            ]);
+        }
+
+        if (this.desc != "") {
+            tipText = tipText.concat([
+                new TooltipText(this.desc, colors.white, textSizes.default, true),
+                new TooltipText('', colors.yellow, textSizes.space, false)
+            ]);
+        }
+
+        tipText = tipText.concat([
+            new TooltipText(this.rare + ' ' + this.type, rareToColor[this.rare], textSizes.default, false)
+        ]);
 
         this.ttip = [];
         for (let i of tipText)
@@ -40,9 +55,8 @@ class Item {
 
     draw(x, y, d) {
         push();
-        fill(mouseHovering(x, y, d/2) ? 158 : 102);
-        circle(x, y, d);
         if (!this.isNull) image(this.imag, x, y, 7*d/6, 7*d/6);
+        //todo: add text for the quantity of item
         pop();
     }
 
