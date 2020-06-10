@@ -11,14 +11,3 @@ Ranks are obtained as extremely rare drops from high level chests and can be sol
 Finally, there is a gambling section that sells tickets, and then draws winners of potentially multimillion dollar winnings.
 The objective is to become the most powerful player (indicated by your stats) because it gives you pretty awesome secret powers :)
 Every player has a power score that increases with their stats, and a leaderboard determines special bonuses.
-
-# Changelog
-
-v0.2 23-25 March 2020
-* Added Tooltips
-* Cute Little Cursor
-
-v0.1 22 March 2020
-* Scrapped old code
-* Basic Inventory
-* Basic Items
