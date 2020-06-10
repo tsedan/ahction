@@ -36,6 +36,14 @@ const colors = {
     black: '#1c1e1f'
 };
 
+const rareToColor = {
+    legendary : colors.yellow,
+    epic : colors.lightpurple,
+    rare : colors.blue,
+    uncommon : colors.green,
+    common : colors.white
+}
+
 const textSizes = {
     name: 48,
     default: 32,

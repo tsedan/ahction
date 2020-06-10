@@ -25,7 +25,7 @@ function setup() {
             new Enchant("serrated edge", "IV")
         ],
         type: 'sword',
-        rare: 'legendary',
+        rare: 'uncommon',
         imag: state.images['sword_iron']
     }));
 }

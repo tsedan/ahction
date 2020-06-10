@@ -18,13 +18,13 @@ class Item {
         enchStr = enchStr.slice(0, -2);
 
         const tipText = [
-            new TooltipText(this.name, colors.yellow, textSizes.name, false),
+            new TooltipText(this.name, rareToColor[this.rare], textSizes.name, false),
             new TooltipText('', colors.yellow, textSizes.space, false),
             new TooltipText(enchStr, colors.lightblue, textSizes.default, true),
             new TooltipText('', colors.yellow, textSizes.space, false),
             new TooltipText(this.desc, colors.white, textSizes.default, true),
             new TooltipText('', colors.yellow, textSizes.space, false),
-            new TooltipText(this.rare + ' ' + this.type, colors.yellow, textSizes.default, false)
+            new TooltipText(this.rare + ' ' + this.type, rareToColor[this.rare], textSizes.default, false)
         ];
 
         this.ttip = [];
