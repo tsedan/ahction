@@ -6,7 +6,6 @@ class TooltipText {
     draw(x, y) {
         push();
         textSize(this.size);
-        noStroke();
         fill(this.color);
         text(this.text.split('~').join(' '), x, y);
         pop();

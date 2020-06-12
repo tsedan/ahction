@@ -14,6 +14,7 @@ function setup() {
     imageMode(CENTER);
     frameRate(60);
     noSmooth();
+    noStroke();
 
     state.inventory = new Inventory(10, 5);
     state.inventory.add(new Item({
