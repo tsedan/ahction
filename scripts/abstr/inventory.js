@@ -43,10 +43,15 @@ class Inventory {
                                 this.items[j][i] = new Item();
                             }
                         } else {
-                            const temp = this.items[j][i];
-                            this.items[j][i] = this.hand;
-                            this.hand = temp.props ? temp : null;
-                            //todo: add if possible
+                            if (this.items[j][i].matches(this.hand) && (this.items[j][i].props.quan && this.hand.props.quan)) {
+                                const wannaPlace = stackSize - this.items[j][i].props.quan;
+                                this.items[j][i].props.quan += min(this.hand.props.quan, wannaPlace);
+                                (wannaPlace >= this.hand.props.quan ? this.hand = null : this.hand.props.quan -= wannaPlace)
+                            } else {
+                                const temp = this.items[j][i];
+                                this.items[j][i] = this.hand;
+                                this.hand = temp.props ? temp : null;
+                            }
                         }
                         return;
                     }
@@ -66,7 +71,21 @@ class Inventory {
                             return;
                         }
             } else {
-                //todo: drop one item onto the location
+                for (let i = 0; i < this.wid; i++)
+                    for (let j = 0; j < this.hei; j++)
+                        if (mouseHovering(x + i*s, y + j*s, d/2)) {
+                            if (this.hand.props.quan) {
+                                if (!this.items[j][i].props) {
+                                    this.items[j][i] = this.hand.copy();
+                                    this.items[j][i].props.quan = 1;
+                                    (this.hand.props.quan == 1 ? this.hand = null : this.hand.props.quan -= 1);
+                                } else if (this.items[j][i].matches(this.hand) && this.items[j][i].props.quan) {
+                                    this.items[j][i].props.quan += 1;
+                                    (this.hand.props.quan == 1 ? this.hand = null : this.hand.props.quan -= 1);
+                                }
+                            }
+                            return;
+                        }
             }
         }
     }
