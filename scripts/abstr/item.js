@@ -60,6 +60,16 @@ class Item {
         pop();
     }
 
+    matches(item) {
+        if (!this.props || !item.props) return false;
+        return (
+            this.props.name == item.props.name &&
+            this.props.desc == item.props.desc &&
+            this.props.type == item.props.type &&
+            this.props.rare == item.props.rare
+        );
+    }
+
     tooltip() {
         if (!this.props) return;
 

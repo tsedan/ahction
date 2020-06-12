@@ -18,7 +18,7 @@ function setup() {
     state.inventory = new Inventory(10, 5);
     state.inventory.add(new Item({
         name: 'Sharpened Kitchen Knife',
-        desc: "you don't really expect much of the knife, but it's durable nonetheless",
+        desc: "a relatively durable watchamajig",
         ench: [
             new Enchant("sharpness", "II"),
             new Enchant("durability", "VI"),
