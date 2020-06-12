@@ -18,11 +18,8 @@ class Inventory {
             for (let j = 0; j < this.hei; j++) {
                 fill(i == hovX && j == hovY ? 126 : 94);
                 circle(x + i*s, y + j*s, d);
-            }
-
-        for (let i = 0; i < this.wid; i++)
-            for (let j = 0; j < this.hei; j++)
                 this.items[j][i].draw(x + i*s, y + j*s, d);
+            }
 
         if (this.hand) this.hand.draw(mouseX,mouseY,d);
         if (hovX != null && hovY != null) this.items[hovY][hovX].tooltip();
@@ -37,7 +34,31 @@ class Inventory {
         return [null, null];
     }
 
-    mouseEvent(x, y, d, s=d*invSpacing) {
+    mouseDouble(x, y, d, s=d*invSpacing) {
+        const [i, j] = this.hoverLoc(x, y, d, s);
+        if (i == null || j == null) return;
+
+        //todo: if hovered item is stackable, consolidate as much as possible into the hand
+    }
+
+    mouseDrag(x, y, d, s=d*invSpacing) {
+        const [i, j] = this.hoverLoc(x, y, d, s);
+        if (i == null || j == null) return;
+
+        if (mouseButton == RIGHT) {
+            if (this.hand && this.hand.props.quan) {
+                if (!this.items[j][i].props) {
+                    this.items[j][i] = this.hand.copy();
+                    this.items[j][i].props.quan = 1;
+                    (this.hand.props.quan == 1 ? this.hand = null : this.hand.props.quan -= 1);
+                }
+            }
+        }
+        
+        //todo: maybe add a left button event for evenly distributing items
+    }
+
+    mousePress(x, y, d, s=d*invSpacing) {
         const [i, j] = this.hoverLoc(x, y, d, s);
         if (i == null || j == null) return;
 

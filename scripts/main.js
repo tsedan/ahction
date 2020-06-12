@@ -60,6 +60,14 @@ function draw() {
     pop();
 }
 
+function doubleClicked() {
+    state.inventory.mouseDouble(40, 40, 40);
+}
+
+function mouseDragged() {
+    state.inventory.mouseDrag(40, 40, 40);
+}
+
 function mousePressed() {
-    state.inventory.mouseEvent(40, 40, 40);
+    state.inventory.mousePress(40, 40, 40);
 }
