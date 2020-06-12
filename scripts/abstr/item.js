@@ -93,4 +93,8 @@ class Item {
 
         pop();
     }
+
+    copy() {
+        return this.props ? new Item(Object.assign({}, this.props)) : new Item();
+    }
 }

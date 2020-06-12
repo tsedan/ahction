@@ -58,7 +58,7 @@ class Inventory {
                             if (this.items[j][i].props) {
                                 const wannaTake = round((this.items[j][i].props.quan || 1) / 2);
                                 const whatsLeft = (this.items[j][i].props.quan || 1) - wannaTake;
-                                this.hand = copyItem(this.items[j][i]);
+                                this.hand = this.items[j][i].copy();
                                 if (this.items[j][i].props.quan) this.hand.props.quan = wannaTake;
                                 if (whatsLeft == 0) this.items[j][i] = new Item();
                                 else this.items[j][i].props.quan = whatsLeft;
