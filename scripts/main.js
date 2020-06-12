@@ -26,8 +26,7 @@ function setup() {
         ],
         type: 'sword',
         rare: 'uncommon',
-        imag: state.images['sword_iron'],
-        stac: false
+        imag: state.images.sword_iron,
     }));
 
     state.inventory.add(new Item({
@@ -36,9 +35,18 @@ function setup() {
         ench: [],
         type: 'ore',
         rare: 'legendary',
-        imag: state.images['ore_vibranium'],
-        stac: true,
+        imag: state.images.ore_vibranium,
         quan: 5
+    }));
+
+    state.inventory.add(new Item({
+        name: 'Uranium Ingot',
+        desc: "",
+        ench: [],
+        type: 'ingot',
+        rare: 'epic',
+        imag: state.images.ingot_uranium,
+        quan: 23
     }));
 }
 
@@ -50,6 +58,8 @@ function draw() {
 
     pop();
 }
+
+//todo: make it so that right click splits stacks
 
 function mousePressed() {
     state.inventory.testHold(40, 40, 40, 60, 60);

@@ -15,7 +15,7 @@ class Inventory {
         noStroke();
         for (let i = 0; i < this.wid; i++)
             for (let j = 0; j < this.hei; j++) {
-                fill(mouseHovering(x + i*sx, y + j*sy, d/2) ? 158 : 102);
+                fill(mouseHovering(x + i*sx, y + j*sy, d/2) ? 116 : 94);
                 circle(x + i*sx, y + j*sy, d);
             }
 
@@ -51,6 +51,7 @@ class Inventory {
             for (let j = 0; j < this.wid; j++)
                 if (this.items[i][j].isNull) { this.items[i][j] = item; return true; }
         return false;
+        //todo: allow stacking up to 80 items
     }
 
     swap(col1, row1, col2, row2) {

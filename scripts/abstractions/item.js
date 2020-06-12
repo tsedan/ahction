@@ -7,8 +7,7 @@ class Item {
         this.type = props.type;
         this.rare = props.rare;
         this.imag = props.imag;
-        this.stac = props.stac;
-        if (this.stac) this.quan = props.quan;
+        this.quan = props.quan;
         this.isNull = false;
         this.updateTip();
     }
@@ -52,9 +51,17 @@ class Item {
     }
 
     draw(x, y, d) {
+        if (this.isNull) return;
         push();
-        if (!this.isNull) image(this.imag, x, y, 7*d/6, 7*d/6);
-        //todo: add text for the quantity of item
+        image(this.imag, x, y, 7*d/6, 7*d/6);
+
+        if (this.quan) {
+            textSize(textSizes.default);
+            fill(colors.white);
+            textAlign(LEFT, BASELINE);
+            text(this.quan, x-d/2, y+d/2);
+        }
+
         pop();
     }
 
