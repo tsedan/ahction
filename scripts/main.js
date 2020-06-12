@@ -54,11 +54,11 @@ function draw() {
     push();
     background(colors.black);
 
-    state.inventory.draw(40, 40, 40, 60, 60);
+    state.inventory.draw(40, 40, 40);
 
     pop();
 }
 
 function mousePressed() {
-    state.inventory.testHold(40, 40, 40, 60, 60);
+    state.inventory.mouseEvent(40, 40, 40);
 }

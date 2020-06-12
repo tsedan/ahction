@@ -9,41 +9,50 @@ class Inventory {
         this.held = null;
     }
 
-    draw(x, y, d, sx, sy) {
+    draw(x, y, d, s=d*invSpacing) {
         push();
 
         noStroke();
         for (let i = 0; i < this.wid; i++)
             for (let j = 0; j < this.hei; j++) {
-                fill(mouseHovering(x + i*sx, y + j*sy, d/2) ? 116 : 94);
-                circle(x + i*sx, y + j*sy, d);
+                fill(mouseHovering(x + i*s, y + j*s, d/2) ? 116 : 94);
+                circle(x + i*s, y + j*s, d);
             }
 
         for (let i = 0; i < this.wid; i++)
             for (let j = 0; j < this.hei; j++)
-                if (this.held == null || (this.held[0] != j || this.held[1] != i)) this.items[j][i].draw(x + i*sx, y + j*sy, d);
+                if (this.held == null || (this.held[0] != j || this.held[1] != i)) this.items[j][i].draw(x + i*s, y + j*s, d);
 
         if (this.held != null) this.items[this.held[0]][this.held[1]].draw(mouseX,mouseY,d);
 
         for (let i = 0; i < this.wid; i++)
             for (let j = 0; j < this.hei; j++)
-                if (mouseHovering(x + i*sx, y + j*sy, d/2) && (this.held == null || (this.held[0] != j || this.held[1] != i)))
+                if (mouseHovering(x + i*s, y + j*s, d/2) && (this.held == null || (this.held[0] != j || this.held[1] != i)))
                     this.items[j][i].tooltip();
 
         pop();
     }
 
-    testHold(x, y, d, sx, sy) {
-        for (let i = 0; i < this.wid; i++)
-            for (let j = 0; j < this.hei; j++)
-                if (mouseHovering(x + i*sx, y + j*sy, d/2)) {
-                    if (this.held == null) {
-                        if (this.items[j][i].props) this.held = [j,i];
-                    } else {
-                        this.swap(this.held[1], this.held[0], i, j);
-                        this.held = null;
+    mouseEvent(x, y, d, s=d*invSpacing) {
+        if (mouseButton == LEFT) {
+            for (let i = 0; i < this.wid; i++)
+                for (let j = 0; j < this.hei; j++)
+                    if (mouseHovering(x + i*s, y + j*s, d/2)) {
+                        if (this.held == null) {
+                            if (this.items[j][i].props) this.held = [j,i];
+                        } else {
+                            this.swap(this.held[1], this.held[0], i, j);
+                            if (!this.items[this.held[0]][this.held[1]].props || (this.held[1] == i && this.held[0] == j)) this.held = null;
+                        }
+                        return;
                     }
-                }
+
+            this.held = null;
+        } else if (mouseButton == RIGHT) {
+            if (!this.held) {
+                //todo: pick up round(half) the item
+            }
+        }
     }
 
     add(item) {

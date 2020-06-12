@@ -5,6 +5,7 @@ const state = {
 }
 
 const stackSize = 80;
+const invSpacing = 1.5;
 
 const normAssets = ['armor','axe','boots','bow','helmet','ingot','leg','ore','shield','sword'];
 const normSuffix = ['iron','diamond','uranium','vibranium'];
