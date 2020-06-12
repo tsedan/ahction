@@ -5,3 +5,7 @@ function mouseHovering(x, y, r) {
 function mouseInBounds(minX, minY, maxX, maxY) {
     return (mouseX >= minX && mouseX <= maxX) && (mouseY >= minY && mouseY <= maxY);
 }
+
+function copyItem(item) {
+    return item.props ? new Item(Object.assign({}, item.props)) : new Item();
+}

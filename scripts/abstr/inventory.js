@@ -46,12 +46,27 @@ class Inventory {
                             const temp = this.items[j][i];
                             this.items[j][i] = this.hand;
                             this.hand = temp.props ? temp : null;
+                            //todo: add if possible
                         }
                         return;
                     }
         } else if (mouseButton == RIGHT) {
             if (!this.hand) {
-                //todo: pick up round(half) the item
+                for (let i = 0; i < this.wid; i++)
+                    for (let j = 0; j < this.hei; j++)
+                        if (mouseHovering(x + i*s, y + j*s, d/2)) {
+                            if (this.items[j][i].props) {
+                                const wannaTake = round((this.items[j][i].props.quan || 1) / 2);
+                                const whatsLeft = (this.items[j][i].props.quan || 1) - wannaTake;
+                                this.hand = copyItem(this.items[j][i]);
+                                if (this.items[j][i].props.quan) this.hand.props.quan = wannaTake;
+                                if (whatsLeft == 0) this.items[j][i] = new Item();
+                                else this.items[j][i].props.quan = whatsLeft;
+                            }
+                            return;
+                        }
+            } else {
+                //todo: drop one item onto the location
             }
         }
     }
