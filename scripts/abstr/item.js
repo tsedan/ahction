@@ -1,43 +1,37 @@
 class Item {
     constructor(props) {
-        if (!props) { this.isNull = true; return; }
-        this.name = props.name;
-        this.desc = props.desc;
-        this.ench = props.ench;
-        this.type = props.type;
-        this.rare = props.rare;
-        this.imag = props.imag;
-        this.quan = props.quan;
-        this.isNull = false;
+        this.props = props;
         this.updateTip();
     }
 
     updateTip() {
+        if (!this.props) return;
+
         let enchStr = "";
-        for (let ench of this.ench)
+        for (let ench of this.props.ench)
             enchStr += ench.type.split(" ").join("~") + "~" + ench.level + ", ";
         enchStr = enchStr.slice(0, -2);
 
         let tipText = [
-            new TooltipText(this.name, rareToColor[this.rare], textSizes.name, false),
+            new TooltipText(this.props.name, rareToColor[this.props.rare], textSizes.name, false),
             new TooltipText('', colors.yellow, textSizes.space, false),
         ];
 
-        if (enchStr != "") {
+        if (enchStr) {
             tipText = tipText.concat([
                 new TooltipText(enchStr, colors.lightblue, textSizes.default, true),
                 new TooltipText('', colors.yellow, textSizes.space, false)
             ]);
         }
 
-        if (this.desc != "") {
+        if (this.props.desc) {
             tipText = tipText.concat([
-                new TooltipText(this.desc, colors.white, textSizes.default, true),
+                new TooltipText(this.props.desc, colors.white, textSizes.default, true),
                 new TooltipText('', colors.yellow, textSizes.space, false)
             ]);
         }
 
-        tipText.push(new TooltipText(this.rare + ' ' + this.type, rareToColor[this.rare], textSizes.default, false));
+        tipText.push(new TooltipText(this.props.rare + ' ' + this.type, rareToColor[this.props.rare], textSizes.default, false));
 
         this.ttip = [];
         for (let i of tipText)
@@ -51,22 +45,24 @@ class Item {
     }
 
     draw(x, y, d) {
-        if (this.isNull) return;
-        push();
-        image(this.imag, x, y, 7*d/6, 7*d/6);
+        if (!this.props) return;
 
-        if (this.quan) {
+        push();
+        image(this.props.imag, x, y, 7*d/6, 7*d/6);
+
+        if (this.props.quan) {
             textSize(textSizes.default);
             fill(colors.white);
             textAlign(LEFT, BASELINE);
-            text(this.quan, x-d/2, y+d/2);
+            text(this.props.quan, x-d/2, y+d/2);
         }
 
         pop();
     }
 
     tooltip() {
-        if (this.isNull) return;
+        if (!this.props) return;
+
         push();
 
         const buff = 8, padd = 8, offs = 4;

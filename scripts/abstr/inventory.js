@@ -3,7 +3,7 @@ class Inventory {
         this.items = [];
         for (let i = 0; i < rows; i++) {
             this.items[i] = [];
-            for (let j = 0; j < cols; j++) this.items[i][j] = new Item(false);
+            for (let j = 0; j < cols; j++) this.items[i][j] = new Item();
         }
         this.wid = cols, this.hei = rows;
         this.held = null;
@@ -38,7 +38,7 @@ class Inventory {
             for (let j = 0; j < this.hei; j++)
                 if (mouseHovering(x + i*sx, y + j*sy, d/2)) {
                     if (this.held == null) {
-                        if (!this.items[j][i].isNull) this.held = [j,i];
+                        if (this.items[j][i].props) this.held = [j,i];
                     } else {
                         this.swap(this.held[1], this.held[0], i, j);
                         this.held = null;
@@ -47,9 +47,11 @@ class Inventory {
     }
 
     add(item) {
+        const quantity = item.props.quan || 1;
+
         for (let i = 0; i < this.hei; i++)
             for (let j = 0; j < this.wid; j++)
-                if (this.items[i][j].isNull) { this.items[i][j] = item; return true; }
+                if (!this.items[i][j].props) { this.items[i][j] = item; return true; }
         return false;
         //todo: allow stacking up to 80 items
     }
