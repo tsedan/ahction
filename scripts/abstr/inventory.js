@@ -6,7 +6,7 @@ class Inventory {
             for (let j = 0; j < cols; j++) this.items[i][j] = new Item();
         }
         this.wid = cols, this.hei = rows;
-        this.held = null;
+        this.hand = null;
     }
 
     draw(x, y, d, s=d*invSpacing) {
@@ -21,14 +21,13 @@ class Inventory {
 
         for (let i = 0; i < this.wid; i++)
             for (let j = 0; j < this.hei; j++)
-                if (this.held == null || (this.held[0] != j || this.held[1] != i)) this.items[j][i].draw(x + i*s, y + j*s, d);
+                this.items[j][i].draw(x + i*s, y + j*s, d);
 
-        if (this.held != null) this.items[this.held[0]][this.held[1]].draw(mouseX,mouseY,d);
+        if (this.hand) this.hand.draw(mouseX,mouseY,d);
 
         for (let i = 0; i < this.wid; i++)
             for (let j = 0; j < this.hei; j++)
-                if (mouseHovering(x + i*s, y + j*s, d/2) && (this.held == null || (this.held[0] != j || this.held[1] != i)))
-                    this.items[j][i].tooltip();
+                if (mouseHovering(x + i*s, y + j*s, d/2)) this.items[j][i].tooltip();
 
         pop();
     }
@@ -38,18 +37,20 @@ class Inventory {
             for (let i = 0; i < this.wid; i++)
                 for (let j = 0; j < this.hei; j++)
                     if (mouseHovering(x + i*s, y + j*s, d/2)) {
-                        if (this.held == null) {
-                            if (this.items[j][i].props) this.held = [j,i];
+                        if (!this.hand) {
+                            if (this.items[j][i].props) {
+                                this.hand = this.items[j][i];
+                                this.items[j][i] = new Item();
+                            }
                         } else {
-                            this.swap(this.held[1], this.held[0], i, j);
-                            if (!this.items[this.held[0]][this.held[1]].props || (this.held[1] == i && this.held[0] == j)) this.held = null;
+                            const temp = this.items[j][i];
+                            this.items[j][i] = this.hand;
+                            this.hand = temp.props ? temp : null;
                         }
                         return;
                     }
-
-            this.held = null;
         } else if (mouseButton == RIGHT) {
-            if (!this.held) {
+            if (!this.hand) {
                 //todo: pick up round(half) the item
             }
         }
@@ -71,11 +72,5 @@ class Inventory {
                 if (!this.items[i][j].props) { this.items[i][j] = item; return true; }
 
         return false;
-    }
-
-    swap(col1, row1, col2, row2) {
-        const tempItem = this.items[row1][col1];
-        this.items[row1][col1] = this.items[row2][col2];
-        this.items[row2][col2] = tempItem;
     }
 }
