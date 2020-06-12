@@ -47,8 +47,6 @@ class Inventory {
     }
 
     add(item) {
-        const stackSize = 80;
-
         if (item.props.quan)
             for (let j = 0; j < this.wid; j++)
                 for (let i = 0; i < this.hei; i++)

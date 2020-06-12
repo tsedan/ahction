@@ -4,6 +4,8 @@ const state = {
     font: {}
 }
 
+const stackSize = 80;
+
 const normAssets = ['armor','axe','boots','bow','helmet','ingot','leg','ore','shield','sword'];
 const normSuffix = ['iron','diamond','uranium','vibranium'];
 const specAssets = [

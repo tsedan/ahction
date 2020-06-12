@@ -59,8 +59,6 @@ function draw() {
     pop();
 }
 
-//todo: make it so that right click splits stacks
-
 function mousePressed() {
     state.inventory.testHold(40, 40, 40, 60, 60);
 }
