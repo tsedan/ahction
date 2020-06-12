@@ -31,7 +31,7 @@ class Item {
             ]);
         }
 
-        tipText.push(new TooltipText(this.props.rare + ' ' + this.type, rareToColor[this.props.rare], textSizes.default, false));
+        tipText.push(new TooltipText(this.props.rare + ' ' + this.props.type, rareToColor[this.props.rare], textSizes.default, false));
 
         this.ttip = [];
         for (let i of tipText)
