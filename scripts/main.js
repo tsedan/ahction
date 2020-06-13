@@ -49,9 +49,11 @@ function setup() {
 
 function draw() {
     push();
-    background(colors.black);
 
-    state.inventory.draw(40, 40, 40);
+    background(colors.black);
+    drawBackground();
+
+    if (state.inventory.active) state.inventory.draw(40, 40, 40);
 
     pop();
 }
