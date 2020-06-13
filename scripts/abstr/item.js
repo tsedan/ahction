@@ -1,20 +1,20 @@
 class Item {
     constructor(props) {
         this.props = props;
-        this.updateTip();
+        this.update();
     }
 
-    updateTip() {
+    update() {
         if (!this.props) return;
 
         let enchStr = "";
-        for (let ench of this.props.ench)
+        if (this.props.ench) for (let ench of this.props.ench)
             enchStr += ench.stringify() + ", ";
         enchStr = enchStr.slice(0, -2);
 
         let tipText = [
-            new TooltipText(this.props.name, rareToColor[this.props.rare], textSizes.name, false),
-            new TooltipText('', colors.yellow, textSizes.space, false),
+            new TooltipText(this.props.name || 'null', rareToColor[this.props.rare || 'common'], textSizes.name, false),
+            new TooltipText('', colors.yellow, textSizes.space, false)
         ];
 
         if (enchStr) {
@@ -31,7 +31,9 @@ class Item {
             ]);
         }
 
-        tipText.push(new TooltipText(this.props.rare + ' ' + this.props.type, rareToColor[this.props.rare], textSizes.default, false));
+        if (this.props.type) {
+            tipText.push(new TooltipText((this.props.rare || '') + ' ' + this.props.type, rareToColor[this.props.rare || 'common'], textSizes.default, false));
+        }
 
         this.ttip = [];
         for (let i of tipText)
@@ -48,7 +50,7 @@ class Item {
         if (!this.props) return;
 
         push();
-        image(this.props.imag, x, y, 7*d/6, 7*d/6);
+        image(state.images[this.props.imag] || state.images['null'], x, y, 7*d/6, 7*d/6);
 
         if (this.props.quan) {
             textSize(textSizes.default);
@@ -66,7 +68,8 @@ class Item {
             this.props.name == item.props.name &&
             this.props.desc == item.props.desc &&
             this.props.type == item.props.type &&
-            this.props.rare == item.props.rare
+            this.props.rare == item.props.rare &&
+            this.props.imag == item.props.imag
         );
     }
 

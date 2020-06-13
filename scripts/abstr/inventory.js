@@ -39,7 +39,11 @@ class Inventory {
         const [i, j] = this.hoverLoc(x, y, d, s);
         if (i == null || j == null) return;
 
-        //todo: if hovered item is stackable, consolidate as much as possible into the hand
+        if (!this.hand && this.hand.quan && this.items[j][i].props && this.items[j][i].props.quan) {
+            if (this.hand.matches(this.items[j][i])) {
+
+            }
+        }
     }
 
     mouseDrag(x, y, d, s=d*invSpacing) {
@@ -106,6 +110,9 @@ class Inventory {
     }
 
     add(item) {
+        //todo: for every item modified, change the background color
+        //todo: for every new item, change the background color
+
         if (item.props.quan)
             for (let j = 0; j < this.wid; j++)
                 for (let i = 0; i < this.hei; i++)

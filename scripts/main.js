@@ -27,26 +27,22 @@ function setup() {
         ],
         type: 'sword',
         rare: 'uncommon',
-        imag: state.images.sword_iron,
+        imag: 'sword_iron',
     }));
 
     state.inventory.add(new Item({
         name: 'Vibranium Ore',
-        desc: "",
-        ench: [],
         type: 'ore',
         rare: 'legendary',
-        imag: state.images.ore_vibranium,
+        imag: 'ore_vibranium',
         quan: 5
     }));
 
     state.inventory.add(new Item({
         name: 'Uranium Ingot',
-        desc: "",
-        ench: [],
         type: 'ingot',
         rare: 'epic',
-        imag: state.images.ingot_uranium,
+        imag: 'ingot_uranium',
         quan: 23
     }));
 }
