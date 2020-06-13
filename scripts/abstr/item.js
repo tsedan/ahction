@@ -32,7 +32,8 @@ class Item {
         }
 
         if (this.props.type) {
-            tipText.push(new TooltipText((this.props.rare || '') + ' ' + this.props.type, rareToColor[this.props.rare || 'common'], textSizes.default, false));
+            const bottomText = (this.props.rare ? this.props.rare + ' ' : '') + (this.props.suff ? this.props.suff + ' ' : '') + this.props.type;
+            tipText.push(new TooltipText(bottomText, rareToColor[this.props.rare || 'common'], textSizes.default, false));
         }
 
         this.ttip = [];
@@ -50,7 +51,9 @@ class Item {
         if (!this.props) return;
 
         push();
-        image(state.images[this.props.imag] || state.images['null'], x, y, 7*d/6, 7*d/6);
+
+        const imag = state.images[this.props.type + '_' + this.props.suff] || state.images[this.props.imag] || state.images['null'];
+        image(imag, x, y, 7*d/6, 7*d/6);
 
         if (this.props.quan) {
             textSize(textSizes.default);
@@ -78,7 +81,7 @@ class Item {
 
         push();
 
-        const buff = 8, padd = 8, offs = 4;
+        const buff = 6, padd = 8, offs = 4;
 
         fill(colors.darkgray);
         rect(mouseX-buff+offs,mouseY-buff+offs,this.twid+padd*2+buff*2,this.thei+padd*2+buff*2);

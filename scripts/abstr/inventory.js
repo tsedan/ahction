@@ -41,7 +41,7 @@ class Inventory {
 
         if (!this.hand && this.hand.quan && this.items[j][i].props && this.items[j][i].props.quan) {
             if (this.hand.matches(this.items[j][i])) {
-
+                //todo: collect as much as possible into this.hand
             }
         }
     }

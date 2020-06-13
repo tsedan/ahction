@@ -1,9 +1,9 @@
 function preload() {
     state.font = loadFont('assets/mozart.ttf');
 
-    for (let i = 0; i < normAssets.length; i++)
-        for (let j = 0; j < normSuffix.length; j++)
-            state.images[normAssets[i] + '_' + normSuffix[j]] = loadImage('assets/' + normAssets[i] + '_' + normSuffix[j] + '.png');
+    for (let prefix of normPrefix)
+        for (let suffix of normSuffix)
+            state.images[prefix + '_' + suffix] = loadImage('assets/' + prefix + '/' + suffix + '.png');
     for (let i of specAssets) state.images[i] = loadImage('assets/' + i + '.png');
 }
 
@@ -27,22 +27,22 @@ function setup() {
         ],
         type: 'sword',
         rare: 'uncommon',
-        imag: 'sword_iron',
+        suff: 'rust'
     }));
 
     state.inventory.add(new Item({
-        name: 'Vibranium Ore',
+        name: 'Dragon Ore',
         type: 'ore',
         rare: 'legendary',
-        imag: 'ore_vibranium',
+        suff: 'dragon',
         quan: 5
     }));
 
     state.inventory.add(new Item({
-        name: 'Uranium Ingot',
+        name: 'Emerald Ingot',
         type: 'ingot',
         rare: 'epic',
-        imag: 'ingot_uranium',
+        suff: 'emerald',
         quan: 23
     }));
 }
