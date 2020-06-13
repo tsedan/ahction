@@ -9,7 +9,7 @@ class Item {
 
         let enchStr = "";
         for (let ench of this.props.ench)
-            enchStr += ench.type.split(" ").join("~") + "~" + ench.level + ", ";
+            enchStr += ench.stringify() + ", ";
         enchStr = enchStr.slice(0, -2);
 
         let tipText = [

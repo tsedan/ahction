@@ -3,4 +3,8 @@ class Enchant {
         this.type = type;
         this.level = level;
     }
+
+    stringify() {
+        return this.type.split(" ").join("~") + "~" + romanize(this.level);
+    }
 }

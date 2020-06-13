@@ -21,9 +21,9 @@ function setup() {
         name: 'Sharpened Kitchen Knife',
         desc: "a relatively durable watchamajig",
         ench: [
-            new Enchant("sharpness", "II"),
-            new Enchant("durability", "VI"),
-            new Enchant("serrated edge", "IV")
+            new Enchant("sharpness", 2),
+            new Enchant("durability", 6),
+            new Enchant("serrated edge", 4)
         ],
         type: 'sword',
         rare: 'uncommon',
@@ -61,13 +61,13 @@ function draw() {
 }
 
 function doubleClicked() {
-    state.inventory.mouseDouble(40, 40, 40);
+    if (state.inventory.active) state.inventory.mouseDouble(40, 40, 40);
 }
 
 function mouseDragged() {
-    state.inventory.mouseDrag(40, 40, 40);
+    if (state.inventory.active) state.inventory.mouseDrag(40, 40, 40);
 }
 
 function mousePressed() {
-    state.inventory.mousePress(40, 40, 40);
+    if (state.inventory.active) state.inventory.mousePress(40, 40, 40);
 }

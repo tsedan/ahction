@@ -7,6 +7,7 @@ class Inventory {
         }
         this.wid = cols, this.hei = rows;
         this.hand = null;
+        this.active = true;
     }
 
     draw(x, y, d, s=d*invSpacing) {
@@ -54,7 +55,7 @@ class Inventory {
                 }
             }
         }
-        
+
         //todo: maybe add a left button event for evenly distributing items
     }
 
