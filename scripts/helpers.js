@@ -20,6 +20,7 @@ function drawBackground() {
     strokeWeight(6);
     stroke(colors.darkgray);
 
+    //todo: optimize this function to only loop within window
     for (let i = -windowWidth; i < 2 * windowWidth; i += lineSize)
         for (let j = -windowHeight; j < 2 * windowHeight; j += lineSize) {
             const xLoc = i - mX, yLoc = j - mY;
