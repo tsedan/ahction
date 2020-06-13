@@ -45,6 +45,8 @@ class Item {
             this.twid = Math.max(this.twid, i.width());
             this.thei += i.height();
         }
+
+        this.imag = state.images[this.props.imag] || state.images[this.props.type + '_' + this.props.suff] || state.images['null'];
     }
 
     draw(x, y, d) {
@@ -52,8 +54,7 @@ class Item {
 
         push();
 
-        const imag = state.images[this.props.type + '_' + this.props.suff] || state.images[this.props.imag] || state.images['null'];
-        image(imag, x, y, 7*d/6, 7*d/6);
+        image(this.imag, x, y, 7*d/6, 7*d/6);
 
         if (this.props.quan) {
             textSize(textSizes.default);
@@ -92,9 +93,9 @@ class Item {
         textAlign(LEFT, TOP);
         const xOff = mouseX + padd + offs;
         let yOff = mouseY - textSizes.name / 6 + padd + offs;
-        for (let i of this.ttip) {
-            i.draw(xOff, yOff);
-            yOff += i.height();
+        for (let tip of this.ttip) {
+            tip.draw(xOff, yOff);
+            yOff += tip.height();
         }
 
         pop();
