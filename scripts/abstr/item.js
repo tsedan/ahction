@@ -52,7 +52,7 @@ class Item {
     }
 
     draw(x, y, d) {
-        this.backcolor = lerpColor(this.backcolor, state.colors.gray, 0.1);
+        this.backcolor = lerpColor(this.backcolor, state.colors.gray, 0.2);
 
         if (!this.props) return;
 

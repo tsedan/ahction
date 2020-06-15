@@ -110,22 +110,28 @@ class Inventory {
     }
 
     add(item) {
-        //todo: for every item modified, change the background color
-        //todo: for every new item, change the background color
-
         if (item.props.quan)
             for (let j = 0; j < this.wid; j++)
                 for (let i = 0; i < this.hei; i++)
                     if (this.items[i][j].matches(item)) {
                         const wannaPlace = stackSize - this.items[i][j].props.quan;
-                        if (wannaPlace >= item.props.quan) { this.items[i][j].props.quan += item.props.quan; return true; }
+                        if (wannaPlace == 0) continue;
+                        this.items[i][j].backcolor = state.colors.itemupdate;
+                        if (wannaPlace >= item.props.quan) {
+                            this.items[i][j].props.quan += item.props.quan;
+                            return true;
+                        }
                         this.items[i][j].props.quan = stackSize;
                         item.props.quan -= wannaPlace;
                     }
 
         for (let j = 0; j < this.wid; j++)
             for (let i = 0; i < this.hei; i++)
-                if (!this.items[i][j].props) { this.items[i][j] = item; return true; }
+                if (!this.items[i][j].props) {
+                    this.items[i][j] = item;
+                    if (this.items[i][j].props) this.items[i][j].backcolor = state.colors.itemupdate;
+                    return true;
+                }
 
         return false;
     }

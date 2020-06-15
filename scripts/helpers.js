@@ -61,4 +61,6 @@ function initColors() {
     state.colors.rare = state.colors.blue;
     state.colors.uncommon = state.colors.green;
     state.colors.common = state.colors.white;
+
+    state.colors.itemupdate = state.colors.green;
 }
