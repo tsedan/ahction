@@ -17,7 +17,7 @@ class Inventory {
 
         for (let i = 0; i < this.wid; i++)
             for (let j = 0; j < this.hei; j++) {
-                fill(i == hovX && j == hovY ? 126 : 94);
+                fill(i == hovX && j == hovY ? state.colors.lightgray : this.items[j][i].backcolor);
                 circle(x + i*s, y + j*s, d);
                 this.items[j][i].draw(x + i*s, y + j*s, d);
             }

@@ -18,7 +18,7 @@ function drawBackground() {
     const lineSize = 40, radius = windowWidth / 2;
     const mX = cos(frameCount / 4000) * radius, mY = sin(frameCount / 4000) * radius;
     strokeWeight(6);
-    stroke(colors.darkgray);
+    stroke(state.colors.darkgray);
 
     //todo: optimize this function to only loop within window
     for (let i = -windowWidth; i < 2 * windowWidth; i += lineSize)
@@ -29,4 +29,36 @@ function drawBackground() {
         }
 
     pop();
+}
+
+function initColors() {
+    state.colors = {
+        lightgreen: color('#55efc4'),
+        green: color('#00b894'),
+        lightyellow: color('#ffeaa7'),
+        yellow: color('#fdcb6e'),
+        lightteal: color('#81ecec'),
+        teal: color('#00cec9'),
+        lightorange: color('#fab1a0'),
+        orange: color('#e17055'),
+        lightblue: color('#74b9ff'),
+        blue: color('#0984e3'),
+        lightred: color('#ff7675'),
+        red: color('#d63031'),
+        lightpurple: color('#a29bfe'),
+        purple: color('#6c5ce7'),
+        lightpink: color('#fd79a8'),
+        pink: color('#e84393'),
+        white: color('#dfe6e9'),
+        lightgray: color('#b2bec3'),
+        gray: color('#636e72'),
+        darkgray: color('#2d3436'),
+        black: color('#1c1e1f')
+    }
+
+    state.colors.legendary = state.colors.yellow;
+    state.colors.epic = state.colors.lightpurple;
+    state.colors.rare = state.colors.blue;
+    state.colors.uncommon = state.colors.green;
+    state.colors.common = state.colors.white;
 }

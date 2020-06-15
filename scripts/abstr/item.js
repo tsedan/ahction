@@ -1,6 +1,8 @@
 class Item {
-    constructor(props) {
+    constructor(props = null) {
         this.props = props;
+        this.backcolor = state.colors.gray;
+
         this.update();
     }
 
@@ -13,27 +15,27 @@ class Item {
         enchStr = enchStr.slice(0, -2);
 
         let tipText = [
-            new TooltipText(this.props.name || 'null', rareToColor[this.props.rare || 'common'], textSizes.name, false),
-            new TooltipText('', colors.yellow, textSizes.space, false)
+            new TooltipText(this.props.name || 'null', state.colors[this.props.rare || 'common'], textSizes.name, false),
+            new TooltipText('', state.colors.yellow, textSizes.space, false)
         ];
 
         if (enchStr) {
             tipText = tipText.concat([
-                new TooltipText(enchStr, colors.lightblue, textSizes.default, true),
-                new TooltipText('', colors.yellow, textSizes.space, false)
+                new TooltipText(enchStr, state.colors.lightblue, textSizes.default, true),
+                new TooltipText('', state.colors.yellow, textSizes.space, false)
             ]);
         }
 
         if (this.props.desc) {
             tipText = tipText.concat([
-                new TooltipText(this.props.desc, colors.white, textSizes.default, true),
-                new TooltipText('', colors.yellow, textSizes.space, false)
+                new TooltipText(this.props.desc, state.colors.white, textSizes.default, true),
+                new TooltipText('', state.colors.yellow, textSizes.space, false)
             ]);
         }
 
         if (this.props.type) {
             const bottomText = (this.props.rare ? this.props.rare + ' ' : '') + (this.props.suff ? this.props.suff + ' ' : '') + this.props.type;
-            tipText.push(new TooltipText(bottomText, rareToColor[this.props.rare || 'common'], textSizes.default, false));
+            tipText.push(new TooltipText(bottomText, state.colors[this.props.rare || 'common'], textSizes.default, false));
         }
 
         this.ttip = [];
@@ -50,6 +52,8 @@ class Item {
     }
 
     draw(x, y, d) {
+        this.backcolor = lerpColor(this.backcolor, state.colors.gray, 0.1);
+
         if (!this.props) return;
 
         push();
@@ -58,7 +62,7 @@ class Item {
 
         if (this.props.quan) {
             textSize(textSizes.default);
-            fill(colors.white);
+            fill(state.colors.white);
             textAlign(LEFT, BASELINE);
             text(this.props.quan, x-d/2, y+d/2);
         }
@@ -84,10 +88,10 @@ class Item {
 
         const buff = 6, padd = 8, offs = 4;
 
-        fill(colors.darkgray);
+        fill(state.colors.darkgray);
         rect(mouseX-buff+offs,mouseY-buff+offs,this.twid+padd*2+buff*2,this.thei+padd*2+buff*2);
 
-        fill(colors.gray);
+        fill(state.colors.gray);
         rect(mouseX+offs,mouseY+offs,this.twid+padd*2,this.thei+padd*2);
 
         textAlign(LEFT, TOP);

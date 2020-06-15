@@ -16,6 +16,8 @@ function setup() {
     noSmooth();
     noStroke();
 
+    initColors();
+
     state.inventory = new Inventory(10, 5);
     state.inventory.add(new Item({
         name: 'Sharpened Kitchen Knife',
@@ -50,7 +52,7 @@ function setup() {
 function draw() {
     push();
 
-    background(colors.black);
+    background(state.colors.black);
     drawBackground();
 
     if (state.inventory.active) state.inventory.draw(40, 40, 40);
