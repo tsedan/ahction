@@ -42,11 +42,28 @@ class Inventory {
         const [i, j] = this.hoverLoc(x, y, d, s);
         if (i == null || j == null) return;
 
-        if (!this.hand && this.hand.quan && this.items[j][i].props && this.items[j][i].props.quan) {
-            if (this.hand.matches(this.items[j][i])) {
-                //todo: collect as much as possible into this.hand
+        const isItem = this.items[j][i].props, isHand = this.hand;
+
+        if ((!isItem && !isHand) || (isItem && !this.items[j][i].props.quan) || (isHand && !this.hand.props.quan)) return;
+
+        if (isHand && isItem) {
+            if (!this.hand.matches(this.items[j][i])) return;
+            const wannaPlace = stackSize - this.hand.props.quan;
+            this.hand.props.quan += min(this.items[j][i].props.quan, wannaPlace);
+            if (wannaPlace >= this.items[j][i].props.quan) {
+                this.items[j][i] = new Item();
+            } else {
+                this.items[j][i].props.quan -= wannaPlace;
+                return;
             }
+        } else if (isItem) {
+            this.hand = this.items[j][i].copy();
+            this.items[j][i] = new Item();
         }
+
+        if (this.hand.props.quan == stackSize) return;
+
+        //todo: grab similar items from the inv
     }
 
     mouseDrag(x, y, d, s=d*invSpacing) {
@@ -80,7 +97,7 @@ class Inventory {
                 if (this.items[j][i].matches(this.hand) && (this.items[j][i].props.quan && this.hand.props.quan)) {
                     const wannaPlace = stackSize - this.items[j][i].props.quan;
                     this.items[j][i].props.quan += min(this.hand.props.quan, wannaPlace);
-                    (wannaPlace >= this.hand.props.quan ? this.hand = null : this.hand.props.quan -= wannaPlace)
+                    (wannaPlace >= this.hand.props.quan ? this.hand = null : this.hand.props.quan -= wannaPlace);
                 } else {
                     const temp = this.items[j][i];
                     this.items[j][i] = this.hand;
@@ -113,28 +130,40 @@ class Inventory {
     }
 
     add(item) {
-        if (item.props.quan)
-            for (let j = 0; j < this.wid; j++)
-                for (let i = 0; i < this.hei; i++)
-                    if (this.items[i][j].matches(item)) {
-                        const wannaPlace = stackSize - this.items[i][j].props.quan;
-                        if (wannaPlace == 0) continue;
+        for (let j = 0; j < this.wid; j++) {
+            for (let i = 0; i < this.hei; i++) {
+                if (this.items[i][j].matches(item) && item.props.quan) {
+
+                    const wannaPlace = stackSize - this.items[i][j].props.quan;
+                    if (wannaPlace == 0) continue;
+                    this.items[i][j].backcolor = state.colors.itemupdate;
+                    if (wannaPlace >= item.props.quan) {
+                        this.items[i][j].props.quan += item.props.quan;
+                        return true;
+                    }
+                    this.items[i][j].props.quan = stackSize;
+                    item.props.quan -= wannaPlace;
+
+                } else if (!this.items[i][j].props) {
+
+                    if (!item.props.quan) {
+                        this.items[i][j] = item.copy();
                         this.items[i][j].backcolor = state.colors.itemupdate;
-                        if (wannaPlace >= item.props.quan) {
-                            this.items[i][j].props.quan += item.props.quan;
+                        return true;
+                    } else {
+                        this.items[i][j] = item.copy();
+                        this.items[i][j].backcolor = state.colors.itemupdate;
+                        if (item.props.quan < stackSize) {
                             return true;
+                        } else {
+                            this.items[i][j].props.quan = stackSize;
+                            item.props.quan -= stackSize;
                         }
-                        this.items[i][j].props.quan = stackSize;
-                        item.props.quan -= wannaPlace;
                     }
 
-        for (let j = 0; j < this.wid; j++)
-            for (let i = 0; i < this.hei; i++)
-                if (!this.items[i][j].props) {
-                    this.items[i][j] = item;
-                    if (this.items[i][j].props) this.items[i][j].backcolor = state.colors.itemupdate;
-                    return true;
                 }
+            }
+        }
 
         return false;
     }

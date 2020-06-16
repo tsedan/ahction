@@ -45,7 +45,7 @@ function setup() {
         type: 'ingot',
         rare: 'epic',
         suff: 'emerald',
-        quan: 23
+        quan: 180
     }));
 }
 
