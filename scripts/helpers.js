@@ -1,3 +1,94 @@
+function invDouble(x, y, d, s=d*invSpacing) {
+    const [i, j] = state.inventory.hoverLoc(x, y, d, s);
+    if (i == null || j == null) return;
+
+    const isItem = state.inventory.items[j][i].props, isHand = state.inventory.hand;
+
+    if ((!isItem && !isHand) || (isItem && !state.inventory.items[j][i].props.quan) || (isHand && !state.inventory.hand.props.quan)) return;
+
+    if (isHand && isItem) {
+        if (!state.inventory.hand.matches(state.inventory.items[j][i])) return;
+        const wannaPlace = stackSize - state.inventory.hand.props.quan;
+        state.inventory.hand.props.quan += min(state.inventory.items[j][i].props.quan, wannaPlace);
+        if (wannaPlace >= state.inventory.items[j][i].props.quan) {
+            state.inventory.items[j][i] = new Item();
+        } else {
+            state.inventory.items[j][i].props.quan -= wannaPlace;
+            return;
+        }
+    } else if (isItem) {
+        state.inventory.hand = state.inventory.items[j][i].copy();
+        state.inventory.items[j][i] = new Item();
+    }
+
+    if (state.inventory.hand.props.quan == stackSize) return;
+
+    //todo: grab similar items from the inv
+}
+
+function invDrag(x, y, d, s=d*invSpacing) {
+    const [i, j] = state.inventory.hoverLoc(x, y, d, s);
+    if (i == null || j == null) return;
+
+    if (mouseButton == RIGHT) {
+        if (state.inventory.hand && state.inventory.hand.props.quan) {
+            if (!state.inventory.items[j][i].props) {
+                state.inventory.items[j][i] = state.inventory.hand.copy();
+                state.inventory.items[j][i].props.quan = 1;
+                (state.inventory.hand.props.quan == 1 ? state.inventory.hand = null : state.inventory.hand.props.quan -= 1);
+            }
+        }
+    }
+
+    //todo: maybe add a left button event for evenly distributing items
+}
+
+function invPress(x, y, d, s=d*invSpacing) {
+    const [i, j] = state.inventory.hoverLoc(x, y, d, s);
+    if (i == null || j == null) return;
+
+    if (mouseButton == LEFT) {
+        if (!state.inventory.hand) {
+            if (state.inventory.items[j][i].props) {
+                state.inventory.hand = state.inventory.items[j][i];
+                state.inventory.items[j][i] = new Item();
+            }
+        } else {
+            if (state.inventory.items[j][i].matches(state.inventory.hand) && (state.inventory.items[j][i].props.quan && state.inventory.hand.props.quan)) {
+                const wannaPlace = stackSize - state.inventory.items[j][i].props.quan;
+                state.inventory.items[j][i].props.quan += min(state.inventory.hand.props.quan, wannaPlace);
+                (wannaPlace >= state.inventory.hand.props.quan ? state.inventory.hand = null : state.inventory.hand.props.quan -= wannaPlace);
+            } else {
+                const temp = state.inventory.items[j][i];
+                state.inventory.items[j][i] = state.inventory.hand;
+                state.inventory.hand = temp.props ? temp : null;
+            }
+        }
+    } else if (mouseButton == RIGHT) {
+        if (!state.inventory.hand) {
+            if (state.inventory.items[j][i].props) {
+                const wannaTake = round((state.inventory.items[j][i].props.quan || 1) / 2);
+                const whatsLeft = (state.inventory.items[j][i].props.quan || 1) - wannaTake;
+                state.inventory.hand = state.inventory.items[j][i].copy();
+                if (state.inventory.items[j][i].props.quan) state.inventory.hand.props.quan = wannaTake;
+                if (whatsLeft == 0) state.inventory.items[j][i] = new Item();
+                else state.inventory.items[j][i].props.quan = whatsLeft;
+            }
+        } else {
+            if (state.inventory.hand.props.quan) {
+                if (!state.inventory.items[j][i].props) {
+                    state.inventory.items[j][i] = state.inventory.hand.copy();
+                    state.inventory.items[j][i].props.quan = 1;
+                    (state.inventory.hand.props.quan == 1 ? state.inventory.hand = null : state.inventory.hand.props.quan -= 1);
+                } else if (state.inventory.items[j][i].matches(state.inventory.hand) && state.inventory.items[j][i].props.quan) {
+                    state.inventory.items[j][i].props.quan += 1;
+                    (state.inventory.hand.props.quan == 1 ? state.inventory.hand = null : state.inventory.hand.props.quan -= 1);
+                }
+            }
+        }
+    }
+}
+
 function mouseInCircle(x, y, r) {
     return sqrt(pow(x - mouseX, 2) + pow(y - mouseY, 2)) < r;
 }
@@ -20,7 +111,7 @@ function drawBackground() {
     strokeWeight(6);
     stroke(state.colors.darkgray);
 
-    //todo: optimize this function to only loop within window
+    //todo: optimize to only loop within window
     for (let i = -windowWidth; i < 2 * windowWidth; i += lineSize)
         for (let j = -windowHeight; j < 2 * windowHeight; j += lineSize) {
             const xLoc = i - mX, yLoc = j - mY;

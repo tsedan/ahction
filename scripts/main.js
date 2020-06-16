@@ -45,7 +45,7 @@ function setup() {
         type: 'ingot',
         rare: 'epic',
         suff: 'emerald',
-        quan: 180
+        quan: 183
     }));
 }
 
@@ -53,7 +53,7 @@ function draw() {
     push();
 
     background(state.colors.black);
-    drawBackground();
+    //drawBackground(); commented because it needs to be optimized before use
 
     if (state.inventory.active) state.inventory.draw(40, 40, 40);
 
@@ -61,13 +61,13 @@ function draw() {
 }
 
 function doubleClicked() {
-    if (state.inventory.active) state.inventory.mouseDouble(40, 40, 40);
+    if (state.inventory.active) invDouble(40, 40, 40);
 }
 
 function mouseDragged() {
-    if (state.inventory.active) state.inventory.mouseDrag(40, 40, 40);
+    if (state.inventory.active) invDrag(40, 40, 40);
 }
 
 function mousePressed() {
-    if (state.inventory.active) state.inventory.mousePress(40, 40, 40);
+    if (state.inventory.active) invPress(40, 40, 40);
 }
