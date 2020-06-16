@@ -57,14 +57,6 @@ function draw() {
 
     if (state.inventory.active) state.inventory.draw(40, 40, 40);
 
-    state.inventory.add(new Item({
-        name: 'Emerald Ingot',
-        type: 'ingot',
-        rare: 'epic',
-        suff: 'emerald',
-        quan: 1
-    }));
-
     pop();
 }
 

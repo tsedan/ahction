@@ -13,17 +13,20 @@ class Inventory {
     draw(x, y, d, s=d*invSpacing) {
         push();
 
-        const [hovX, hovY] = this.hoverLoc(x, y, d, s);
-
+        let hov = null;
         for (let i = 0; i < this.wid; i++)
             for (let j = 0; j < this.hei; j++) {
-                fill(i == hovX && j == hovY ? state.colors.lightgray : this.items[j][i].backcolor);
+                fill(this.items[j][i].backcolor);
+                if (!hov && mouseInCircle(x + i*s, y + j*s, d/2)) {
+                    hov = [i, j];
+                    fill(state.colors.lightgray);
+                }
                 circle(x + i*s, y + j*s, d);
                 this.items[j][i].draw(x + i*s, y + j*s, d);
             }
 
         if (this.hand) this.hand.draw(mouseX,mouseY,d);
-        if (hovX != null && hovY != null) this.items[hovY][hovX].tooltip();
+        if (hov) this.items[hov[1]][hov[0]].tooltip();
 
         pop();
     }
@@ -31,7 +34,7 @@ class Inventory {
     hoverLoc(x, y, d, s=d*invSpacing) {
         for (let i = 0; i < this.wid; i++)
             for (let j = 0; j < this.hei; j++)
-                if (mouseHovering(x + i*s, y + j*s, d/2)) { return [i, j]; }
+                if (mouseInCircle(x + i*s, y + j*s, d/2)) { return [i, j]; }
         return [null, null];
     }
 
