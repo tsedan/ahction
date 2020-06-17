@@ -1,7 +1,6 @@
 # About
 
-An auction-based MMORPG style idle game.
-
+An auction-based MMORPG style idle game.  
 Super duper extremely very much still in beta, but [you can still try it out](https://Sordamente.github.io/ahction)
 
 # Synopsis
@@ -9,11 +8,11 @@ This is an MMORPG designed to mimic Minecraft item mechanics. There is no “gam
 
 ## Changelog
 
-16 June 2020
-- Revamped the README
+- 16 June 2020
+    - Revamped the README
 
 ## To Do
 
-- Rewrite inventory interactions to correctly implement selection
-- Don't load the game until assets are imported
-- Initialize Firebase
+1. Rewrite inventory interactions to correctly implement selection
+2. Don't load the game until assets are imported
+3. Initialize Firebase
