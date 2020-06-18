@@ -34,7 +34,7 @@ class Hand {
         this.holding = false;
     }
 
-    setHand(item, origin) {
+    set(item, origin) {
         if (!item || !item.props || !origin) return;
         this.item = item;
         this.origin = origin;

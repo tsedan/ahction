@@ -69,13 +69,13 @@ function draw() {
 }
 
 function doubleClicked() {
-    //if (state.inventory.active) invDouble(40, 40, state.scale);
+    handleDouble(40, 40, state.scale);
 }
 
 function mouseDragged() {
-    //if (state.inventory.active) invDrag(40, 40, state.scale);
+    handleDrag(40, 40, state.scale);
 }
 
 function mousePressed() {
-    //if (state.inventory.active) invPress(40, 40, state.scale);
+    handlePress(40, 40, state.scale);
 }

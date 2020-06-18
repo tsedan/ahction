@@ -10,6 +10,7 @@ This is an MMORPG designed to mimic Minecraft item mechanics. There is no “gam
 
 - 18 June 2020
     - Updated Tooltips
+    - Abstracted Held Item
 
 - 16 June 2020
     - Revamped the README
