@@ -1,4 +1,5 @@
-function handleDouble(x, y, d, s=d*spacing) {
+//todo: reintegrate mouse event handlers inside tabs themselves
+function handleDouble(x, y, d=state.scale, s=d*spacing) {
     const [i, j] = state.inventory.hoverLoc(x, y, d, s);
     if (i == null || j == null) return;
 
@@ -26,7 +27,7 @@ function handleDouble(x, y, d, s=d*spacing) {
     //todo: grab similar items from the inv
 }
 
-function handleDrag(x, y, d, s=d*spacing) {
+function handleDrag(x, y, d=state.scale, s=d*spacing) {
     const [i, j] = state.inventory.hoverLoc(x, y, d, s);
     if (i == null || j == null) return;
 
@@ -43,7 +44,7 @@ function handleDrag(x, y, d, s=d*spacing) {
     //todo: maybe add a left button event for evenly distributing items
 }
 
-function handlePress(x, y, d, s=d*spacing) {
+function handlePress(x, y, d=state.scale, s=d*spacing) {
     const [i, j] = state.inventory.hoverLoc(x, y, d, s);
     if (i == null || j == null) return;
 

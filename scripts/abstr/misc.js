@@ -24,7 +24,7 @@ class Hand {
         this.nullify();
     }
 
-    draw(d) {
+    draw(d=state.scale) {
         if (this.holding) this.item.draw(mouseX,mouseY,d);
     }
 

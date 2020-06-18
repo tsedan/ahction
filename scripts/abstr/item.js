@@ -63,7 +63,7 @@ class Item {
         this.imag = state.images[this.props.imag] || state.images[this.props.type + '_' + this.props.suff] || state.images['null'];
     }
 
-    draw(x, y, d) {
+    draw(x, y, d=state.scale) {
         this.backcolor = lerpColor(this.backcolor, state.colors.gray, 0.2);
 
         if (!this.props) return;

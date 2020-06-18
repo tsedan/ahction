@@ -11,12 +11,13 @@ This is an MMORPG designed to mimic Minecraft item mechanics. There is no “gam
 - 18 June 2020
     - Updated Tooltips
     - Abstracted Held Item
+    - Added Tabbing Abstraction
 
 - 16 June 2020
     - Revamped the README
 
 ## To Do
 
-1. Rewrite inventory interactions to correctly implement selection
+1. Implement Tabs
 2. Don't load the game until assets are imported
 3. Initialize Firebase

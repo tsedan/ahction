@@ -9,7 +9,7 @@ class Inventory {
         this.active = true;
     }
 
-    draw(x, y, d, s=d*spacing) {
+    draw(x, y, d=state.scale, s=d*spacing) {
         push();
 
         let hov = null;
@@ -29,7 +29,7 @@ class Inventory {
         pop();
     }
 
-    hoverLoc(x, y, d, s=d*spacing) {
+    hoverLoc(x, y, d=state.scale, s=d*spacing) {
         for (let i = 0; i < this.wid; i++)
             for (let j = 0; j < this.hei; j++)
                 if (mouseInCircle(x + i*s, y + j*s, d/2)) { return [i, j]; }

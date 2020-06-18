@@ -18,8 +18,9 @@ function setup() {
 
     initColors();
 
-    state.inventory = new Inventory(10, 5);
-    state.inventory.add(new Item({
+    state.invtabs.add(new Inventory(10, 5), invStr);
+
+    state.invtabs.tabs[invStr].add(new Item({
         name: 'Sharpened Kitchen Knife',
         desc: "a relatively durable watchamajig",
         ench: [
@@ -38,7 +39,7 @@ function setup() {
         suff: 'rust'
     }));
 
-    state.inventory.add(new Item({
+    state.invtabs.tabs[invStr].add(new Item({
         name: 'Dragon Ore',
         type: 'ore',
         rare: 'legendary',
@@ -46,7 +47,7 @@ function setup() {
         quan: 5
     }));
 
-    state.inventory.add(new Item({
+    state.invtabs.tabs[invStr].add(new Item({
         name: 'Emerald Ingot',
         type: 'ingot',
         rare: 'epic',
@@ -61,21 +62,21 @@ function draw() {
     background(state.colors.black);
     //drawBackground(); commented because it needs to be optimized before use
 
-    if (state.inventory.active) state.inventory.draw(40, 40, state.scale);
+    state.invtabs.draw(40, 40);
 
-    state.hand.draw(state.scale);
+    state.hand.draw();
 
     pop();
 }
 
 function doubleClicked() {
-    handleDouble(40, 40, state.scale);
+    //handleDouble(40, 40);
 }
 
 function mouseDragged() {
-    handleDrag(40, 40, state.scale);
+    //handleDrag(40, 40);
 }
 
 function mousePressed() {
-    handlePress(40, 40, state.scale);
+    //handlePress(40, 40);
 }
