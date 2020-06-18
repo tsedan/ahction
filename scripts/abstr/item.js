@@ -1,13 +1,20 @@
 class Item {
-    constructor(props = null) {
+    constructor(props = { isNull: true }) {
         this.props = props;
+
+        if (!this.props.isNull) {
+            if (this.props.stac == undefined) this.props.stac = (this.props.quan ? true : false);
+            this.props.quan = this.props.quan || 1;
+            this.props.isNull = false;
+        }
+
         this.backcolor = state.colors.gray;
 
         this.update();
     }
 
     update() {
-        if (!this.props) return;
+        if (this.props.isNull) return;
 
         let enchStr = "";
         if (this.props.ench) for (let ench of this.props.ench)
@@ -66,13 +73,13 @@ class Item {
     draw(x, y, d=state.scale) {
         this.backcolor = lerpColor(this.backcolor, state.colors.gray, 0.2);
 
-        if (!this.props) return;
+        if (this.props.isNull) return;
 
         push();
 
         image(this.imag, x, y, 7*d/6, 7*d/6);
 
-        if (this.props.quan) {
+        if (this.props.stac) {
             textSize(textSizes.default);
             fill(state.colors.white);
             textAlign(LEFT, BASELINE);
@@ -83,12 +90,13 @@ class Item {
     }
 
     matches(item) {
-        if (!this.props || !item.props) return false;
+        if (this.props.isNull || item.props.isNull) return false;
         return (
             this.props.name == item.props.name &&
             this.props.desc == item.props.desc &&
             this.props.type == item.props.type &&
             this.props.rare == item.props.rare &&
+            this.props.stac == item.props.stac &&
             this.props.imag == item.props.imag
         );
 
@@ -96,7 +104,7 @@ class Item {
     }
 
     tooltip() {
-        if (!this.props) return;
+        if (this.props.isNull) return;
 
         push();
 
@@ -120,6 +128,6 @@ class Item {
     }
 
     copy() {
-        return this.props ? new Item(Object.assign({}, this.props)) : new Item();
+        return this.props.isNull ? new Item() : new Item(Object.assign({}, this.props));
     }
 }

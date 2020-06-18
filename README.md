@@ -12,6 +12,8 @@ This is an MMORPG designed to mimic Minecraft item and Pokémon PvP mechanics. T
     - Updated Tooltips
     - Abstracted Held Item
     - Added Tabbing Abstraction
+    - Removed Outdated Drag Code
+    - Rewrote Inventory Abstraction
     - Updated README
 
 - 16 June 2020

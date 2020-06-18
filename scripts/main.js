@@ -18,7 +18,7 @@ function setup() {
 
     initColors();
 
-    state.invtabs.add(new Inventory(10, 5), invStr);
+    state.invtabs.add(new Inventory(10, 5));
 
     state.invtabs.tabs[invStr].add(new Item({
         name: 'Sharpened Kitchen Knife',
@@ -60,7 +60,6 @@ function draw() {
     push();
 
     background(state.colors.black);
-    //drawBackground(); commented because it needs to be optimized before use
 
     state.invtabs.draw(40, 40);
 
@@ -70,13 +69,13 @@ function draw() {
 }
 
 function doubleClicked() {
-    //handleDouble(40, 40);
+    state.invtabs.handleDouble(40, 40);
 }
 
 function mouseDragged() {
-    //handleDrag(40, 40);
+    state.invtabs.handleDrag(40, 40);
 }
 
 function mousePressed() {
-    //handlePress(40, 40);
+    state.invtabs.handlePress(40, 40);
 }
