@@ -14,10 +14,22 @@ class Item {
             enchStr += ench.stringify() + ", ";
         enchStr = enchStr.slice(0, -2);
 
+        let moveStr = "";
+        if (this.props.move) for (let move of this.props.move)
+            moveStr += move.stringify() + ", ";
+        moveStr = moveStr.slice(0, -2);
+
         let tipText = [
             new TooltipText(this.props.name || 'null', state.colors[this.props.rare || 'common'], textSizes.name, false),
             new TooltipText('', state.colors.yellow, textSizes.space, false)
         ];
+
+        if (moveStr) {
+            tipText = tipText.concat([
+                new TooltipText(moveStr, state.colors.lightred, textSizes.default, true),
+                new TooltipText('', state.colors.yellow, textSizes.space, false)
+            ]);
+        }
 
         if (enchStr) {
             tipText = tipText.concat([
@@ -79,6 +91,8 @@ class Item {
             this.props.rare == item.props.rare &&
             this.props.imag == item.props.imag
         );
+
+        //todo: also evaluate sameness in terms of moves and enchants
     }
 
     tooltip() {

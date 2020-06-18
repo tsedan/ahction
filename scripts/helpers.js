@@ -1,4 +1,4 @@
-function invDouble(x, y, d, s=d*invSpacing) {
+/*function invDouble(x, y, d, s=d*spacing) {
     const [i, j] = state.inventory.hoverLoc(x, y, d, s);
     if (i == null || j == null) return;
 
@@ -26,7 +26,7 @@ function invDouble(x, y, d, s=d*invSpacing) {
     //todo: grab similar items from the inv
 }
 
-function invDrag(x, y, d, s=d*invSpacing) {
+function invDrag(x, y, d, s=d*spacing) {
     const [i, j] = state.inventory.hoverLoc(x, y, d, s);
     if (i == null || j == null) return;
 
@@ -43,7 +43,7 @@ function invDrag(x, y, d, s=d*invSpacing) {
     //todo: maybe add a left button event for evenly distributing items
 }
 
-function invPress(x, y, d, s=d*invSpacing) {
+function invPress(x, y, d, s=d*spacing) {
     const [i, j] = state.inventory.hoverLoc(x, y, d, s);
     if (i == null || j == null) return;
 
@@ -87,7 +87,7 @@ function invPress(x, y, d, s=d*invSpacing) {
             }
         }
     }
-}
+}*/
 
 function mouseInCircle(x, y, r) {
     return sqrt(pow(x - mouseX, 2) + pow(y - mouseY, 2)) < r;

@@ -6,11 +6,10 @@ class Inventory {
             for (let j = 0; j < cols; j++) this.items[i][j] = new Item();
         }
         this.wid = cols, this.hei = rows;
-        this.hand = null;
         this.active = true;
     }
 
-    draw(x, y, d, s=d*invSpacing) {
+    draw(x, y, d, s=d*spacing) {
         push();
 
         let hov = null;
@@ -25,13 +24,12 @@ class Inventory {
                 this.items[j][i].draw(x + i*s, y + j*s, d);
             }
 
-        if (this.hand) this.hand.draw(mouseX,mouseY,d);
         if (hov) this.items[hov[1]][hov[0]].tooltip();
 
         pop();
     }
 
-    hoverLoc(x, y, d, s=d*invSpacing) {
+    hoverLoc(x, y, d, s=d*spacing) {
         for (let i = 0; i < this.wid; i++)
             for (let j = 0; j < this.hei; j++)
                 if (mouseInCircle(x + i*s, y + j*s, d/2)) { return [i, j]; }

@@ -8,6 +8,9 @@ This is an MMORPG designed to mimic Minecraft item mechanics. There is no “gam
 
 ## Changelog
 
+- 18 June 2020
+    - Updated Tooltips
+
 - 16 June 2020
     - Revamped the README
 

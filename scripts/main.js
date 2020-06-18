@@ -27,6 +27,12 @@ function setup() {
             new Enchant("durability", 6),
             new Enchant("serrated edge", 4)
         ],
+        move: [
+            new Move("shank"),
+            new Move("uppercut"),
+            new Move("mince"),
+            new Move("heimlich maneuver")
+        ],
         type: 'sword',
         rare: 'uncommon',
         suff: 'rust'
@@ -45,7 +51,7 @@ function setup() {
         type: 'ingot',
         rare: 'epic',
         suff: 'emerald',
-        quan: 183
+        quan: 103
     }));
 }
 
@@ -55,19 +61,21 @@ function draw() {
     background(state.colors.black);
     //drawBackground(); commented because it needs to be optimized before use
 
-    if (state.inventory.active) state.inventory.draw(40, 40, 40);
+    if (state.inventory.active) state.inventory.draw(40, 40, state.scale);
+
+    state.hand.draw(state.scale);
 
     pop();
 }
 
 function doubleClicked() {
-    if (state.inventory.active) invDouble(40, 40, 40);
+    //if (state.inventory.active) invDouble(40, 40, state.scale);
 }
 
 function mouseDragged() {
-    if (state.inventory.active) invDrag(40, 40, 40);
+    //if (state.inventory.active) invDrag(40, 40, state.scale);
 }
 
 function mousePressed() {
-    if (state.inventory.active) invPress(40, 40, 40);
+    //if (state.inventory.active) invPress(40, 40, state.scale);
 }

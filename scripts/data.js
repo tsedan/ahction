@@ -1,12 +1,17 @@
 const state = {
     inventory: {},
+
+    hand: new Hand(),
+    
     images: {},
     font: {},
-    colors: {}
+    colors: {},
+
+    scale: 40
 }
 
 const stackSize = 80;
-const invSpacing = 1.5;
+const spacing = 1.5;
 
 const normPrefix = ['armor','axe','boots','bow','helmet','ingot','leg','ore','shield','sword'];
 const normSuffix = ['rust','sapphire','emerald','dragon'];
