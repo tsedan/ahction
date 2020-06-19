@@ -23,7 +23,7 @@ class Tabs {
         const keys = Object.keys(this.tabs); let offset = 0;
         for (let tab = 0; tab < keys.length; tab++) {
             const hovering = mouseInRect(x + (-d/2+offset)*this.hor, y-(correctSize/2), textWidth(keys[tab])*this.hor, correctSize/2);
-            fill(this.active == keys[tab] ? state.colors.white : (hovering ? state.colors.lightgray : state.colors.gray));
+            fill(this.active == keys[tab] ? state.colors.perfectwhite : (hovering ? state.colors.lightgray : state.colors.gray));
             text(keys[tab], x + (-d/2+offset)*this.hor, y-d/2);
             offset += textWidth(keys[tab] + ' ');
         }

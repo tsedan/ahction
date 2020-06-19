@@ -68,11 +68,15 @@ function initColors() {
         purple: color('#6c5ce7'),
         lightpink: color('#fd79a8'),
         pink: color('#e84393'),
-        white: color('#dfe6e9'),
         lightgray: color('#b2bec3'),
         gray: color('#636e72'),
         darkgray: color('#2d3436'),
-        black: color('#1c1e1f')
+        black: color('#1c1e1f'),
+        snow: color('#dfe6e9'),
+        white: color('#efefef'),
+
+        perfectblack: color('#000000'),
+        perfectwhite: color('#ffffff')
     }
 
     state.colors.legendary = state.colors.yellow;

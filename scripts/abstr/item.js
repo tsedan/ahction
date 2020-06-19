@@ -47,7 +47,7 @@ class Item {
 
         if (this.props.desc) {
             tipText = tipText.concat([
-                new TooltipText(this.props.desc, state.colors.white, textSizes.default, true),
+                new TooltipText(this.props.desc, state.colors.snow, textSizes.default, true),
                 new TooltipText('', state.colors.yellow, textSizes.space, false)
             ]);
         }
@@ -81,7 +81,7 @@ class Item {
 
         if (this.props.stac) {
             textSize(textSizes.default * state.scale/originalscale);
-            fill(state.colors.white);
+            fill(state.colors.perfectwhite);
             textAlign(LEFT, BASELINE);
             text(this.props.quan, x-d/2, y+d/2);
         }
