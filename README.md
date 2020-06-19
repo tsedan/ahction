@@ -19,7 +19,6 @@ This is an MMORPG designed to mimic Minecraft item and Pokémon fighting mechani
     - Implemented Right Aligned Tabs
     - Made Tooltips Orient Horizontally
     - Recolored Some Whites
-    - Attempted To Fix Mobile Address Bar
 
 - 18 June 2020
     - Updated Tooltips
