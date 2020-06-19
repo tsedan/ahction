@@ -19,7 +19,9 @@ function setup() {
     initColors();
 
     state.invtabs.add(new Inventory(10, 5, invStr));
-    state.invtabs.add(new Inventory(10, 5, 'cheese'));
+    state.invtabs.add(new Inventory(1, 1, 'banana'));
+
+    state.invtabs.active = invStr;
 
     state.invtabs.tabs[invStr].add(new Item({
         name: 'Sharpened Kitchen Knife',
@@ -54,6 +56,14 @@ function setup() {
         rare: 'epic',
         suff: 'emerald',
         quan: 103
+    }));
+
+    state.invtabs.tabs['banana'].add(new Item({
+        name: 'banana',
+        desc: 'it is a banana',
+        type: 'banana',
+        rare: 'legendary',
+        imag: 'ingot_gold',
     }));
 }
 

@@ -20,7 +20,7 @@ const normSuffix = ['rust','sapphire','emerald','dragon'];
 const specAssets = [
     'book_1','book_2','book_3','book_4','book_5','book_6','book_eye','book_ultra',
     'chest_dummy','chest_disciple','chest_master','chest_ace','chest_mkit',
-    'ingot_gold','key_silver','key_gold','ore_gold','null'
+    'ingot_gold','key_silver','key_gold','ore_gold','hilt','null'
 ];
 
 const textSizes = {

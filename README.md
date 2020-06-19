@@ -21,6 +21,6 @@ This is an MMORPG designed to mimic Minecraft item and Pokémon PvP mechanics. T
 
 ## To Do
 
-1. Implement Tabs
+1. Scalability
 2. Don't load the game until assets are imported
 3. Initialize Firebase

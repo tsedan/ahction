@@ -17,10 +17,9 @@ class Tabs {
         textSize(textSizes.default);
         textAlign(LEFT, TOP);
 
-        const keys = Object.keys(this.tabs);
-        let offset = 0;
+        const keys = Object.keys(this.tabs); let offset = 0;
         for (let tab = 0; tab < keys.length; tab++) {
-            const hovering = mouseInRect(x-d/2+offset, y-d/2, x-d/2+offset+textWidth(keys[tab]), y-d/2+(textSizes.default/2));
+            const hovering = mouseInRect(x-d/2+offset, y-(textSizes.default/2), x-d/2+offset+textWidth(keys[tab]), y);
             fill(this.active == keys[tab] ? state.colors.white : (hovering ? state.colors.lightgray : state.colors.gray));
             text(keys[tab], x-d/2+offset, y-d/2);
             offset += textWidth(keys[tab] + ' ');
@@ -38,8 +37,19 @@ class Tabs {
     }
 
     handlePress(x, y, d=state.scale, s=d*spacing) {
-        //todo: handle changing tabs
+        push();
+
+        textSize(textSizes.default);
+        textAlign(LEFT, TOP);
+
+        const keys = Object.keys(this.tabs); let offset = 0;
+        for (let tab = 0; tab < keys.length; tab++) {
+            if (mouseInRect(x-d/2+offset, y-(textSizes.default/2), x-d/2+offset+textWidth(keys[tab]), y)) this.active = keys[tab];
+            offset += textWidth(keys[tab] + ' ');
+        }
 
         if (this.active) this.tabs[this.active].handlePress(x, y, d, s);
+
+        pop();
     }
 }
