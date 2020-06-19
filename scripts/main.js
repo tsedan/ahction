@@ -69,14 +69,18 @@ function setup() {
 }
 
 function draw() {
+    const size = getSize();
+
     push();
 
     background(state.colors.black);
 
-    fill(state.colors.darkgray);
+    const off = state.scale/4;
+    stroke(state.colors.darkgray);
+    strokeWeight(off);
+    noFill();
     rectMode(CENTER);
-    const size = getSize();
-    rect(width/2, height/2, size[0], size[1]);
+    rect(width/2, height/2, size[0]-off, size[1]-off);
 
     pop();
     push();
