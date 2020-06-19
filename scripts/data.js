@@ -10,6 +10,9 @@ const state = {
     scale: 40
 }
 
+const originalscale = state.scale;
+const aspectratio = 2;
+
 const stackSize = 80;
 const spacing = 1.5;
 

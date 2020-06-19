@@ -14,6 +14,7 @@ This is an MMORPG designed to mimic Minecraft item and Pokémon PvP mechanics. T
     - Added Tabbing Abstraction
     - Removed Outdated Drag Code
     - Rewrote Inventory Abstraction
+    - Added Scaling Placeholder Rectangle
     - Updated README
 
 - 16 June 2020
@@ -22,5 +23,7 @@ This is an MMORPG designed to mimic Minecraft item and Pokémon PvP mechanics. T
 ## To Do
 
 1. Scalability
-2. Don't load the game until assets are imported
-3. Initialize Firebase
+2. Reimplement item holding
+3. Add other basic GUI elements
+4. Don't load the game until assets are imported
+5. Initialize Firebase

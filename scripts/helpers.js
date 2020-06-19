@@ -1,3 +1,10 @@
+function getSize() {
+    const ratio = width/height;
+    const rwid = (ratio < aspectratio ? width : height*aspectratio);
+    const rhei = (ratio < aspectratio ? width/aspectratio : height);
+    return [rwid, rhei];
+}
+
 function mouseInCircle(x, y, r) {
     return sqrt(pow(x - mouseX, 2) + pow(y - mouseY, 2)) < r;
 }

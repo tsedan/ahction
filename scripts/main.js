@@ -72,11 +72,23 @@ function draw() {
 
     background(state.colors.black);
 
+    fill(state.colors.darkgray);
+    rectMode(CENTER);
+    const size = getSize();
+    rect(width/2, height/2, size[0], size[1]);
+
+    pop();
+    push();
+
     state.invtabs.draw(40, 40);
 
     state.hand.draw();
 
     pop();
+}
+
+function windowResized() {
+    resizeCanvas(windowWidth, windowHeight);
 }
 
 function doubleClicked() {
