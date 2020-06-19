@@ -7,6 +7,7 @@ class ItemTable {
         }
         this.wid = cols, this.hei = rows;
         this.label = label;
+        this.hor = 1;
     }
 
     handleDouble(x, y, d, s) {}
@@ -20,12 +21,12 @@ class ItemTable {
         for (let i = 0; i < this.wid; i++)
             for (let j = 0; j < this.hei; j++) {
                 fill(this.items[j][i].backcolor);
-                if (!hov && mouseInCircle(x + i*s, y + j*s, d/2)) {
+                if (!hov && mouseInCircle(x + i*s*this.hor, y + j*s, d/2)) {
                     hov = [i, j];
                     fill(state.colors.lightgray);
                 }
-                circle(x + i*s, y + j*s, d);
-                this.items[j][i].draw(x + i*s, y + j*s, d);
+                circle(x + i*s*this.hor, y + j*s, d);
+                this.items[j][i].draw(x + i*s*this.hor, y + j*s, d);
             }
 
         if (hov) this.items[hov[1]][hov[0]].tooltip();
@@ -36,7 +37,7 @@ class ItemTable {
     hoverLoc(x, y, d, s) {
         for (let i = 0; i < this.wid; i++)
             for (let j = 0; j < this.hei; j++)
-                if (mouseInCircle(x + i*s, y + j*s, d/2)) { return [i, j]; }
+                if (mouseInCircle(x + i*s*this.hor, y + j*s, d/2)) { return [i, j]; }
         return [null, null];
     }
 

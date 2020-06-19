@@ -15,8 +15,10 @@ function mouseInCircle(x, y, r) {
     return sqrt(pow(x - mouseX, 2) + pow(y - mouseY, 2)) < r;
 }
 
-function mouseInRect(x1, y1, x2, y2) {
-    return mouseX >= x1 && mouseX <= x2 && mouseY >= y1 && mouseY <= y2;
+function mouseInRect(x, y, w, h) {
+    if (abs(w) != w) { x = x+w; w = abs(w); }
+    if (abs(h) != h) { y = y+h; h = abs(h); }
+    return mouseX >= x && mouseY >= y && mouseX <= x+w && mouseY <= y+h;
 }
 
 function romanize(num) {
@@ -32,9 +34,9 @@ function romanize(num) {
 function drawBackground() {
     push();
 
-    const lineSize = 40, radius = windowWidth / 2;
+    const lineSize = state.scale, radius = windowWidth / 2;
     const mX = cos(frameCount / 4000) * radius, mY = sin(frameCount / 4000) * radius;
-    strokeWeight(6);
+    strokeWeight(state.scale/7);
     stroke(state.colors.darkgray);
 
     //todo: optimize to only loop within window

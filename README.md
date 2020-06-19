@@ -15,6 +15,10 @@ This is an MMORPG designed to mimic Minecraft item and Pokémon fighting mechani
 
 ## Changelog
 
+- 19 June 2020
+    - Implemented Right Aligned Tabs
+    - Made Tooltips Orient Horizontally
+
 - 18 June 2020
     - Updated Tooltips
     - Abstracted Held Item

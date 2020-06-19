@@ -74,6 +74,7 @@ function draw() {
     push();
 
     background(state.colors.black);
+    //drawBackground();
 
     const off = state.scale/4;
     stroke(state.colors.darkgray);
@@ -85,7 +86,7 @@ function draw() {
     pop();
     push();
 
-    state.invtabs.draw(width/2 - size[0]/2 + state.scale, height/2 - size[1]/2 + state.scale);
+    state.invtabs.draw(width/2 + size[0]/2 - state.scale, height/2 - size[1]/2 + state.scale);
 
     state.hand.draw();
 
@@ -99,15 +100,15 @@ function windowResized() {
 
 function doubleClicked() {
     const size = getSize();
-    state.invtabs.handleDouble(width/2 - size[0]/2 + state.scale, height/2 - size[1]/2 + state.scale);
+    state.invtabs.handleDouble(width/2 + size[0]/2 - state.scale, height/2 - size[1]/2 + state.scale);
 }
 
 function mouseDragged() {
     const size = getSize();
-    state.invtabs.handleDrag(width/2 - size[0]/2 + state.scale, height/2 - size[1]/2 + state.scale);
+    state.invtabs.handleDrag(width/2 + size[0]/2 - state.scale, height/2 - size[1]/2 + state.scale);
 }
 
 function mousePressed() {
     const size = getSize();
-    state.invtabs.handlePress(width/2 - size[0]/2 + state.scale, height/2 - size[1]/2 + state.scale);
+    state.invtabs.handlePress(width/2 + size[0]/2 - state.scale, height/2 - size[1]/2 + state.scale);
 }

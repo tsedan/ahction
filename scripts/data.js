@@ -1,5 +1,5 @@
 const state = {
-    invtabs: new Tabs(),
+    invtabs: new Tabs(-1),
 
     hand: new Hand(),
 

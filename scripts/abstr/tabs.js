@@ -1,11 +1,13 @@
 class Tabs {
-    constructor() {
+    constructor(horizontal) {
         this.tabs = {};
         this.active = null;
+        this.hor = horizontal;
     }
 
     add(tab) {
         this.tabs[tab.label] = tab;
+        tab.hor = this.hor;
         this.active = tab.label;
     }
 
@@ -16,13 +18,13 @@ class Tabs {
 
         const correctSize = textSizes.default * state.scale/originalscale;
         textSize(correctSize);
-        textAlign(LEFT, TOP);
+        textAlign((this.hor == 1 ? LEFT : RIGHT), TOP);
 
         const keys = Object.keys(this.tabs); let offset = 0;
         for (let tab = 0; tab < keys.length; tab++) {
-            const hovering = mouseInRect(x-d/2+offset, y-(correctSize/2), x-d/2+offset+textWidth(keys[tab]), y);
+            const hovering = mouseInRect(x + (-d/2+offset)*this.hor, y-(correctSize/2), textWidth(keys[tab])*this.hor, correctSize/2);
             fill(this.active == keys[tab] ? state.colors.white : (hovering ? state.colors.lightgray : state.colors.gray));
-            text(keys[tab], x-d/2+offset, y-d/2);
+            text(keys[tab], x + (-d/2+offset)*this.hor, y-d/2);
             offset += textWidth(keys[tab] + ' ');
         }
 
@@ -42,11 +44,11 @@ class Tabs {
 
         const correctSize = textSizes.default * state.scale/originalscale;
         textSize(correctSize);
-        textAlign(LEFT, TOP);
+        textAlign((this.hor == 1 ? LEFT : RIGHT), TOP);
 
         const keys = Object.keys(this.tabs); let offset = 0;
         for (let tab = 0; tab < keys.length; tab++) {
-            if (mouseInRect(x-d/2+offset, y-(correctSize/2), x-d/2+offset+textWidth(keys[tab]), y)) this.active = keys[tab];
+            if (mouseInRect(x + (-d/2+offset)*this.hor, y-(correctSize/2), textWidth(keys[tab])*this.hor, correctSize/2)) this.active = keys[tab];
             offset += textWidth(keys[tab] + ' ');
         }
 

@@ -106,16 +106,17 @@ class Item {
 
         push();
 
+        const dir = (mouseX < width/2 ? 1 : -1);
         const buff = state.scale/7, padd = state.scale/5, offs = state.scale/10;
 
         fill(state.colors.darkgray);
-        rect(mouseX-buff+offs,mouseY-buff+offs,this.twid+padd*2+buff*2,this.thei+padd*2+buff*2);
+        rect(mouseX+offs-buff*dir,mouseY-buff+offs,(this.twid+padd*2+buff*2)*dir,this.thei+padd*2+buff*2);
 
         fill(state.colors.black);
-        rect(mouseX+offs,mouseY+offs,this.twid+padd*2,this.thei+padd*2);
+        rect(mouseX+offs,mouseY+offs,(this.twid+padd*2)*dir,this.thei+padd*2);
 
         textAlign(LEFT, TOP);
-        const xOff = mouseX + padd + offs;
+        const xOff = mouseX + padd + offs - (dir == -1 ? (this.twid+padd*2) : 0);
         let yOff = mouseY - (textSizes.name * state.scale/originalscale)/6 + padd + offs;
         for (let tip of this.ttip) {
             tip.draw(xOff, yOff);
