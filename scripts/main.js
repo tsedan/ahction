@@ -18,7 +18,8 @@ function setup() {
 
     initColors();
 
-    state.invtabs.add(new Inventory(10, 5));
+    state.invtabs.add(new Inventory(10, 5, invStr));
+    state.invtabs.add(new Inventory(10, 5, 'cheese'));
 
     state.invtabs.tabs[invStr].add(new Item({
         name: 'Sharpened Kitchen Knife',

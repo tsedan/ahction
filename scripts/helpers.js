@@ -2,6 +2,10 @@ function mouseInCircle(x, y, r) {
     return sqrt(pow(x - mouseX, 2) + pow(y - mouseY, 2)) < r;
 }
 
+function mouseInRect(x1, y1, x2, y2) {
+    return mouseX >= x1 && mouseX <= x2 && mouseY >= y1 && mouseY <= y2;
+}
+
 function romanize(num) {
     const digits = String(+num).split(""),
         key = ["","C","CC","CCC","CD","D","DC","DCC","DCCC","CM",

@@ -26,5 +26,6 @@ const specAssets = [
 const textSizes = {
     name: 48,
     default: 32,
-    space: 24
+    space: 24,
+    tab: 18
 }

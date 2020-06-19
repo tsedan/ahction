@@ -113,7 +113,7 @@ class Item {
         fill(state.colors.darkgray);
         rect(mouseX-buff+offs,mouseY-buff+offs,this.twid+padd*2+buff*2,this.thei+padd*2+buff*2);
 
-        fill(state.colors.gray);
+        fill(state.colors.black);
         rect(mouseX+offs,mouseY+offs,this.twid+padd*2,this.thei+padd*2);
 
         textAlign(LEFT, TOP);
