@@ -8,11 +8,10 @@ This is an MMORPG designed to mimic Minecraft item and Pokémon fighting mechani
 
 ## To Do
 
-1. Screen scalability
-2. Reimplement item holding
-3. Add other basic GUI elements
-4. Don't load the game until assets are imported
-5. Initialize Firebase
+1. Reimplement item holding
+2. Add other basic GUI elements
+3. Don't load the game until assets are imported
+4. Initialize Firebase
 
 ## Changelog
 
@@ -23,6 +22,7 @@ This is an MMORPG designed to mimic Minecraft item and Pokémon fighting mechani
     - Removed Outdated Drag Code
     - Rewrote Inventory Abstraction
     - Added Scaling Placeholder Rectangle
+    - Properly Scaled Everything
     - Updated README
 
 - 16 June 2020

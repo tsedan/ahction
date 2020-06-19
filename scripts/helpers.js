@@ -1,3 +1,9 @@
+function updateScale() {
+    const size = getSize();
+    state.scale = size[0]/40;
+    state.invtabs.updateAll();
+}
+
 function getSize() {
     const ratio = width/height;
     const rwid = (ratio < aspectratio ? width : height*aspectratio);

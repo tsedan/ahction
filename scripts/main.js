@@ -17,8 +17,9 @@ function setup() {
     noStroke();
 
     initColors();
+    updateScale();
 
-    state.invtabs.add(new Inventory(10, 5, invStr));
+    state.invtabs.add(new Inventory(11, 5, invStr));
     state.invtabs.add(new Inventory(1, 1, 'banana'));
 
     state.invtabs.active = invStr;
@@ -80,7 +81,7 @@ function draw() {
     pop();
     push();
 
-    state.invtabs.draw(40, 40);
+    state.invtabs.draw(width/2 - size[0]/2 + state.scale, height/2 - size[1]/2 + state.scale);
 
     state.hand.draw();
 
@@ -89,16 +90,20 @@ function draw() {
 
 function windowResized() {
     resizeCanvas(windowWidth, windowHeight);
+    updateScale();
 }
 
 function doubleClicked() {
-    state.invtabs.handleDouble(40, 40);
+    const size = getSize();
+    state.invtabs.handleDouble(width/2 - size[0]/2 + state.scale, height/2 - size[1]/2 + state.scale);
 }
 
 function mouseDragged() {
-    state.invtabs.handleDrag(40, 40);
+    const size = getSize();
+    state.invtabs.handleDrag(width/2 - size[0]/2 + state.scale, height/2 - size[1]/2 + state.scale);
 }
 
 function mousePressed() {
-    state.invtabs.handlePress(40, 40);
+    const size = getSize();
+    state.invtabs.handlePress(width/2 - size[0]/2 + state.scale, height/2 - size[1]/2 + state.scale);
 }

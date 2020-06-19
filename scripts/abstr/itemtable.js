@@ -64,4 +64,10 @@ class ItemTable {
 
         return false;
     }
+
+    updateAll() {
+        for (let i = 0; i < this.wid; i++)
+            for (let j = 0; j < this.hei; j++)
+                this.items[j][i].update();
+    }
 }

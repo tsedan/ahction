@@ -5,7 +5,7 @@ class TooltipText {
 
     draw(x, y) {
         push();
-        textSize(this.size);
+        textSize(this.size * state.scale/originalscale);
         fill(this.color);
         text(this.text.split('~').join(' '), x, y);
         pop();
@@ -29,11 +29,11 @@ class TooltipText {
 
     width() {
         push();
-        textSize(this.size);
+        textSize(this.size * state.scale/originalscale);
         const wid = textWidth(this.text);
         pop();
         return wid;
     }
 
-    height() { return this.size/2; }
+    height() { return (this.size * state.scale/originalscale)/2; }
 }

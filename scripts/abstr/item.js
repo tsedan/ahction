@@ -80,7 +80,7 @@ class Item {
         image(this.imag, x, y, 7*d/6, 7*d/6);
 
         if (this.props.stac) {
-            textSize(textSizes.default);
+            textSize(textSizes.default * state.scale/originalscale);
             fill(state.colors.white);
             textAlign(LEFT, BASELINE);
             text(this.props.quan, x-d/2, y+d/2);
@@ -99,8 +99,6 @@ class Item {
             this.props.stac == item.props.stac &&
             this.props.imag == item.props.imag
         );
-
-        //todo: also evaluate sameness in terms of moves and enchants
     }
 
     tooltip() {
@@ -108,7 +106,7 @@ class Item {
 
         push();
 
-        const buff = 6, padd = 8, offs = 4;
+        const buff = state.scale/7, padd = state.scale/5, offs = state.scale/10;
 
         fill(state.colors.darkgray);
         rect(mouseX-buff+offs,mouseY-buff+offs,this.twid+padd*2+buff*2,this.thei+padd*2+buff*2);
@@ -118,7 +116,7 @@ class Item {
 
         textAlign(LEFT, TOP);
         const xOff = mouseX + padd + offs;
-        let yOff = mouseY - textSizes.name / 6 + padd + offs;
+        let yOff = mouseY - (textSizes.name * state.scale/originalscale)/6 + padd + offs;
         for (let tip of this.ttip) {
             tip.draw(xOff, yOff);
             yOff += tip.height();
