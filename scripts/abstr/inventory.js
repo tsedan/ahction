@@ -1,6 +1,6 @@
 class Inventory extends ItemTable {
-    constructor(cols, rows, identifier) {
-        super(cols, rows, identifier);
+    constructor(cols, rows, label) {
+        super(cols, rows, label);
     }
 
     handleDouble(x, y, d, s) {

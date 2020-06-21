@@ -1,18 +1,15 @@
-class ItemTable {
+class ItemTable extends Tab {
     constructor(cols, rows, label) {
+        super(label);
+
         this.items = [];
         for (let i = 0; i < rows; i++) {
             this.items[i] = [];
             for (let j = 0; j < cols; j++) this.items[i][j] = new Item();
         }
         this.wid = cols, this.hei = rows;
-        this.label = label;
         this.hor = 1;
     }
-
-    handleDouble(x, y, d, s) {}
-    handleDrag(x, y, d, s) {}
-    handlePress(x, y, d, s) {}
 
     draw(x, y, d, s) {
         push();
@@ -66,7 +63,7 @@ class ItemTable {
         return false;
     }
 
-    updateAll() {
+    update() {
         for (let i = 0; i < this.wid; i++)
             for (let j = 0; j < this.hei; j++)
                 this.items[j][i].update();

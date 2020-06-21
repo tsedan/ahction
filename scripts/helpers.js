@@ -1,7 +1,7 @@
 function updateScale() {
     const size = getSize();
     state.scale = size[0]/40;
-    state.invtabs.updateAll();
+    state.invtabs.update();
 }
 
 function getSize() {

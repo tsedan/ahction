@@ -57,7 +57,7 @@ class Tabs {
         pop();
     }
 
-    updateAll() {
-        for (let tab of Object.values(this.tabs)) tab.updateAll();
+    update() {
+        for (let tab of Object.values(this.tabs)) tab.update();
     }
 }
