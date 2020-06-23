@@ -5,10 +5,8 @@ function updateScale() {
 }
 
 function getSize() {
-    const ratio = width/height;
-    const rwid = (ratio < aspectratio ? width : height*aspectratio);
-    const rhei = (ratio < aspectratio ? width/aspectratio : height);
-    return [rwid, rhei];
+    return [(width < aspectratio*height ? width : height*aspectratio),
+        (width < aspectratio*height ? width/aspectratio : height)];
 }
 
 function mouseInCircle(x, y, r) {
