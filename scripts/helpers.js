@@ -92,6 +92,8 @@ function initDemoTabs() {
     state.invtabs.initpos(function() {
         this.x = width - state.scale;
         this.y = state.scale;
+        this.d = state.scale;
+        this.s = this.d*spacing;
     });
 
     state.invtabs.add(new Inventory(11, 5, invStr));
