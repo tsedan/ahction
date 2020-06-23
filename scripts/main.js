@@ -24,7 +24,7 @@ function setup() {
 
 function draw() {
     background(state.colors.black);
-    //drawBackground();
+    drawBackground();
 
     state.invtabs.draw();
     state.hand.draw();

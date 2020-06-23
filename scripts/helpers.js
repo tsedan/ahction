@@ -32,18 +32,16 @@ function romanize(num) {
 function drawBackground() {
     push();
 
-    const lineSize = state.scale, radius = windowWidth / 2;
-    const mX = cos(frameCount / 4000) * radius, mY = sin(frameCount / 4000) * radius;
-    strokeWeight(state.scale/7);
-    stroke(state.colors.darkgray);
+    const lineSize = state.scale;
+    const offX = lineSize*(mouseX-width/2)/width;
+    const offY = lineSize*(mouseY-height/2)/height;
 
-    //todo: optimize to only loop within window
-    for (let i = -windowWidth; i < 2 * windowWidth; i += lineSize)
-        for (let j = -windowHeight; j < 2 * windowHeight; j += lineSize) {
-            const xLoc = i - mX, yLoc = j - mY;
-            if (xLoc >= -lineSize && xLoc <= windowWidth + lineSize && yLoc >= -lineSize && yLoc <= windowHeight + lineSize)
-                round(noise(i, j)) ? line(xLoc, yLoc, xLoc + lineSize, yLoc + lineSize) : line(xLoc + lineSize, yLoc, xLoc, yLoc + lineSize);
-        }
+    strokeWeight(lineSize/7);
+    stroke(state.colors.lightblack);
+
+    for (let i = -lineSize; i < width+lineSize; i += lineSize)
+        for (let j = -lineSize; j < height+lineSize; j += lineSize)
+            round(noise(i, j)) ? line(i-offX,j-offY,i-offX+lineSize,j-offY+lineSize) : line(i-offX+lineSize,j-offY,i-offX,j-offY+lineSize);
 
     pop();
 }
@@ -69,6 +67,7 @@ function initColors() {
         lightgray: color('#b2bec3'),
         gray: color('#636e72'),
         darkgray: color('#2d3436'),
+        lightblack: color('#222425'),
         black: color('#1c1e1f'),
         snow: color('#dfe6e9'),
         white: color('#efefef'),
