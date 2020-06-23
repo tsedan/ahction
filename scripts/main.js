@@ -26,7 +26,7 @@ function draw() {
     background(state.colors.black);
     //drawBackground();
 
-    state.invtabs.draw(width - state.scale, state.scale);
+    state.invtabs.draw();
     state.hand.draw();
 }
 
@@ -36,13 +36,13 @@ function windowResized() {
 }
 
 function doubleClicked() {
-    state.invtabs.handleDouble(width - state.scale, state.scale);
+    state.invtabs.handleDouble();
 }
 
 function mouseDragged() {
-    state.invtabs.handleDrag(width - state.scale, state.scale);
+    state.invtabs.handleDrag();
 }
 
 function mousePressed() {
-    state.invtabs.handlePress(width - state.scale, state.scale);
+    state.invtabs.handlePress();
 }

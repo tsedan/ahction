@@ -3,6 +3,12 @@ class Tabs {
         this.tabs = {};
         this.active = null;
         this.hor = horizontal;
+        this.x = 0; this.y = 0;
+    }
+
+    initpos(posfunct) {
+        this.posfunct = posfunct;
+        this.posfunct();
     }
 
     add(tab) {
@@ -11,10 +17,10 @@ class Tabs {
         this.active = tab.label;
     }
 
-    draw(x, y, d=state.scale, s=d*spacing) {
+    draw(d=state.scale, s=d*spacing) {
         push();
 
-        if (this.active) this.tabs[this.active].draw(x, y+d, d, s);
+        if (this.active) this.tabs[this.active].draw(this.x, this.y+d, d, s);
 
         const correctSize = textSizes.default * state.scale/originalscale;
         textSize(correctSize);
@@ -22,24 +28,24 @@ class Tabs {
 
         const keys = Object.keys(this.tabs); let offset = 0;
         for (let tab = 0; tab < keys.length; tab++) {
-            const hovering = mouseInRect(x + (-d/2+offset)*this.hor, y-(correctSize/2), textWidth(keys[tab])*this.hor, correctSize/2);
+            const hovering = mouseInRect(this.x + (-d/2+offset)*this.hor, this.y-(correctSize/2), textWidth(keys[tab])*this.hor, correctSize/2);
             fill(this.active == keys[tab] ? state.colors.perfectwhite : (hovering ? state.colors.lightgray : state.colors.gray));
-            text(keys[tab], x + (-d/2+offset)*this.hor, y-d/2);
+            text(keys[tab], this.x + (-d/2+offset)*this.hor, this.y-d/2);
             offset += textWidth(keys[tab] + ' ');
         }
 
         pop();
     }
 
-    handleDouble(x, y, d=state.scale, s=d*spacing) {
-        if (this.active) this.tabs[this.active].handleDouble(x, y, d, s);
+    handleDouble(d=state.scale, s=d*spacing) {
+        if (this.active) this.tabs[this.active].handleDouble(this.x, this.y, d, s);
     }
 
-    handleDrag(x, y, d=state.scale, s=d*spacing) {
-        if (this.active) this.tabs[this.active].handleDrag(x, y, d, s);
+    handleDrag(d=state.scale, s=d*spacing) {
+        if (this.active) this.tabs[this.active].handleDrag(this.x, this.y, d, s);
     }
 
-    handlePress(x, y, d=state.scale, s=d*spacing) {
+    handlePress(d=state.scale, s=d*spacing) {
         push();
 
         const correctSize = textSizes.default * state.scale/originalscale;
@@ -48,16 +54,18 @@ class Tabs {
 
         const keys = Object.keys(this.tabs); let offset = 0;
         for (let tab = 0; tab < keys.length; tab++) {
-            if (mouseInRect(x + (-d/2+offset)*this.hor, y-(correctSize/2), textWidth(keys[tab])*this.hor, correctSize/2)) this.active = keys[tab];
+            if (mouseInRect(this.x + (-d/2+offset)*this.hor, this.y-(correctSize/2), textWidth(keys[tab])*this.hor, correctSize/2)) this.active = keys[tab];
             offset += textWidth(keys[tab] + ' ');
         }
 
-        if (this.active) this.tabs[this.active].handlePress(x, y, d, s);
+        if (this.active) this.tabs[this.active].handlePress(this.x, this.y, d, s);
 
         pop();
     }
 
     update() {
+        if (this.posfunct) this.posfunct();
+
         for (let tab of Object.values(this.tabs)) tab.update();
     }
 }

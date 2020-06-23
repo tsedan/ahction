@@ -89,6 +89,11 @@ function initColors() {
 }
 
 function initDemoTabs() {
+    state.invtabs.initpos(function() {
+        this.x = width - state.scale;
+        this.y = state.scale;
+    });
+
     state.invtabs.add(new Inventory(11, 5, invStr));
     state.invtabs.add(new Inventory(1, 1, 'banana'));
 
