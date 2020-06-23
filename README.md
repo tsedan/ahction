@@ -1,5 +1,4 @@
 ## About
-
 An auction-based MMORPG style 'idle' game.  
 Super duper extremely very much still in beta, but [you can still try it out](https://Sordamente.github.io/ahction)
 
@@ -7,7 +6,6 @@ Super duper extremely very much still in beta, but [you can still try it out](ht
 This is an MMORPG designed to mimic Minecraft item and Pokémon fighting mechanics. The entire aim of the game is simply to become the strongest character. Through various actions, such as mining, fighting, woodcutting, fishing, etc., loot can be obtained that indirectly or directly strengthens the player or improves the efficiency of said actions. Player to player interaction mainly occurs through the auction house, in which users can buy and sell items at self-set rates. Most non-fighting mechanics are accessed through a command line, which also doubles as a chat box. More info is to come, but the game framework is still in development, so expect details at a later date.
 
 ## To Do
-
 1. Reimplement item holding
 2. Add other basic GUI elements
 3. Don't load the game until assets are imported
