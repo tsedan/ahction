@@ -27,7 +27,7 @@ class Item {
         moveStr = moveStr.slice(0, -2);
 
         let tipText = [
-            new TooltipText(this.props.name || 'null', state.colors[this.props.rare || 'common'], textSizes.name, false),
+            new TooltipText(this.props.name || 'null', state.colors[this.props.rare] || state.colors.common, textSizes.name, false),
             new TooltipText('', state.colors.yellow, textSizes.space, false)
         ];
 
@@ -54,7 +54,7 @@ class Item {
 
         if (this.props.type) {
             const bottomText = (this.props.rare ? this.props.rare + ' ' : '') + (this.props.suff ? this.props.suff + ' ' : '') + this.props.type;
-            tipText.push(new TooltipText(bottomText, state.colors[this.props.rare || 'common'], textSizes.default, false));
+            tipText.push(new TooltipText(bottomText, state.colors[this.props.rare] || state.colors.common, textSizes.default, false));
         }
 
         this.ttip = [];

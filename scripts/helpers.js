@@ -140,7 +140,7 @@ function initDemoTabs() {
         name: 'banana',
         desc: 'it is a banana',
         type: 'banana',
-        rare: 'legendary',
-        imag: 'ingot_gold',
+        rare: 'yellow',
+        imag: 'ingot_gold'
     }));
 }
