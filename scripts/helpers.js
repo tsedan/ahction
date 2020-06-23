@@ -87,3 +87,53 @@ function initColors() {
 
     state.colors.itemupdate = state.colors.green;
 }
+
+function initDemoTabs() {
+    state.invtabs.add(new Inventory(11, 5, invStr));
+    state.invtabs.add(new Inventory(1, 1, 'banana'));
+
+    state.invtabs.active = invStr;
+
+    state.invtabs.tabs[invStr].add(new Item({
+        name: 'Sharpened Kitchen Knife',
+        desc: "a relatively durable watchamajig",
+        ench: [
+            new Enchant("sharpness", 2),
+            new Enchant("durability", 6),
+            new Enchant("serrated edge", 4)
+        ],
+        move: [
+            new Move("shank"),
+            new Move("uppercut"),
+            new Move("mince"),
+            new Move("heimlich maneuver")
+        ],
+        type: 'sword',
+        rare: 'uncommon',
+        suff: 'rust'
+    }));
+
+    state.invtabs.tabs[invStr].add(new Item({
+        name: 'Dragon Ore',
+        type: 'ore',
+        rare: 'legendary',
+        suff: 'dragon',
+        quan: 5
+    }));
+
+    state.invtabs.tabs[invStr].add(new Item({
+        name: 'Emerald Ingot',
+        type: 'ingot',
+        rare: 'epic',
+        suff: 'emerald',
+        quan: 103
+    }));
+
+    state.invtabs.tabs['banana'].add(new Item({
+        name: 'banana',
+        desc: 'it is a banana',
+        type: 'banana',
+        rare: 'legendary',
+        imag: 'ingot_gold',
+    }));
+}
