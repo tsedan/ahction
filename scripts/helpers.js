@@ -29,6 +29,17 @@ function romanize(num) {
     return Array(+digits.join("") + 1).join("M") + roman;
 }
 
+function drawFrameRate() {
+    push();
+
+    textSize(textSizes.space * state.scale/originalscale);
+    textAlign(LEFT, TOP);
+    fill(state.colors.perfectwhite);
+    text(int(frameRate()), 0, 0);
+
+    pop();
+}
+
 function drawBackground() {
     push();
 

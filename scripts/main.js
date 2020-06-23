@@ -12,7 +12,6 @@ function setup() {
     cursor('assets/cursor.png');
     textFont(state.font);
     imageMode(CENTER);
-    frameRate(60);
     noSmooth();
     noStroke();
 
@@ -28,6 +27,8 @@ function draw() {
 
     state.invtabs.draw();
     state.hand.draw();
+
+    drawFrameRate();
 }
 
 function windowResized() {
