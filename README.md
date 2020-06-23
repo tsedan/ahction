@@ -12,23 +12,3 @@ This is an MMORPG designed to mimic Minecraft item and Pokémon fighting mechani
 2. Add other basic GUI elements
 3. Don't load the game until assets are imported
 4. Initialize Firebase
-
-## Changelog
-
-- 19 June 2020
-    - Implemented Right Aligned Tabs
-    - Made Tooltips Orient Horizontally
-    - Recolored Some Whites
-
-- 18 June 2020
-    - Updated Tooltips
-    - Abstracted Held Item
-    - Added Tabbing Abstraction
-    - Removed Outdated Drag Code
-    - Rewrote Inventory Abstraction
-    - Added Scaling Placeholder Rectangle
-    - Properly Scaled Everything
-    - Updated README
-
-- 16 June 2020
-    - Revamped the README
